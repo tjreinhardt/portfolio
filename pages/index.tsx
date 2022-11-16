@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import About from '../components/About'
 import Header from '../components/Header'
 import Hero from '../components/Hero'
+import WorkExperience from '../components/WorkExperience'
 
 export default function Home() {
   return (
@@ -13,8 +15,16 @@ export default function Home() {
       </Head>
       <Header />
 
-      <section className='snap-center' id="hero">
+      <section className='snap-start' id="hero">
         <Hero />
+      </section>
+
+      <section className="snap-center" id="about">
+        <About />
+      </section>
+
+      <section id="experience" className='snap-center'>
+        <WorkExperience />
       </section>
 
     </div>
