@@ -8,3 +8,5 @@ export const fetchSkills = async () => {
 
   return skills;
 }
+
+//test
