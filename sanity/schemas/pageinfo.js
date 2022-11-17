@@ -15,7 +15,7 @@ export default {
     },
     {
       name: "heroImage",
-      title: "HeroImage",
+      title: "Image",
       type: "image",
       options: {
         hotspot: true,

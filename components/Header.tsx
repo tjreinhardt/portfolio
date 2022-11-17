@@ -36,21 +36,6 @@ function Header({ socials }: Props) {
             bgColor="transparent"
           />
         ))}
-        {/* <SocialIcon
-          url="https://github.com/tjreinhardt"
-          fgColor='gray'
-          bgColor='transparent'
-        />
-        <SocialIcon
-          url="https://www.linkedin.com/in/tim-reinhardt-55716b146/"
-          fgColor='gray'
-          bgColor='transparent'
-        />
-        <SocialIcon
-          url="https://soundcloud.com/zhift/popular-tracks"
-          fgColor='gray'
-          bgColor='transparent'
-        /> */}
       </motion.div>
       <Link href="#contact">
         <motion.div
