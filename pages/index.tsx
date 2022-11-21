@@ -61,14 +61,14 @@ const Home = ({ pageInfo, experiences, projects, skills, socials }: Props) => {
       </section>
 
       <Link href="#hero">
-        <footer className='sticky bottom-5 w-full cursor-pointer'>
+        <footer className='sticky bottom-1 w-full cursor-pointer'>
           <div className='flex items-center justify-center'>
             {/* <img
               className='h-10 w-10 rounded-full filter grayscale hover:grayscale-0 cursor-pointer'
               src="http://partyhopper.s3.amazonaws.com/2e561f860c024c7c99717bf054efaf76.png"
               alt=""
             /> */}
-            <svg className='h-10 w-10 rounded-full filter hover:bg-[#F7AB0A]/80 cursor-pointer transition duration-200 ease-in-out' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+            <svg className='h-8 w-8 rounded-full filter hover:bg-[#F7AB0A]/80 cursor-pointer transition duration-200 ease-in-out' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               <path className="hover:red-500" strokeLinecap="round" strokeLinejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
             </svg>
 
