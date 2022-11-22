@@ -17,7 +17,11 @@ function Projects({ projects }: Props) {
       <h3 className='absolute top-24 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl'>
         Projects
       </h3>
-      <div className='mt-8 relative w-full flex overflow-x-scroll overflow-y-hidden snap-x
+      <h3
+        className='absolute text-xs top-32 uppercase tracking-[3px] text-gray-500 pr-3'>
+        Swipe right for more
+      </h3>
+      <div className='mt-8 h-[90vh] relative w-full flex overflow-x-scroll overflow-y-hidden snap-x
       snap-mandatory z-20 scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 mb-10'>
         {projects.map((project, i) => (
           <div key={project._id} className='w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-6 md:p-44 h-screen'>
@@ -31,10 +35,10 @@ function Projects({ projects }: Props) {
               viewport={{ once: true }}
               src={urlFor(project?.image).url()}
               alt=''
-              className='h-50 max-h-[170px] w-auto'
+              className='h-50 max-h-[145px] md:max-h-[170px] lg:max-h-[250px] w-auto mt-14'
             />
 
-            <div className='space-y-4 md:space-y-6 lg:space-y-10 px-0 md:px-10 max-w-6xl'>
+            <div className='space-y-3 md:space-y-6 lg:space-y-10 px-0 md:px-10 max-w-6xl'>
               <h4 className='text-lg md:text-3xl font-semibold text-center'>
                 <span className='underline decoration-[#F7AB0A]/50'>Case Study {i + 1} of {projects.length}:</span>{" "}
                 {project?.title}
@@ -42,11 +46,11 @@ function Projects({ projects }: Props) {
 
               <div className='flex items-center md:space-x-2 justify-center'>
                 {project?.technologies.map(technology => (
-                  <img className="h-10 w-10 rounded-full object-cover" key={technology._id} src={urlFor(technology.image).url()} alt="" />
+                  <img className="h-8 w-8 rounded-full object-cover" key={technology._id} src={urlFor(technology.image).url()} alt="" />
                 ))}
               </div>
 
-              <p className='text-xs md:text-md lg:text-lg text-center md:text-left'>{project?.summary}</p>
+              <p className='text-xs md:text-md lg:text-lg text-center md:text-left pb-2'>{project?.summary}</p>
             </div>
           </div>
         ))}

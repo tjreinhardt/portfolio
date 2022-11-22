@@ -17,6 +17,10 @@ function WorkExperience({ experiences }: Props) {
       <h3 className='absolute top-24 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl'>
         Experience
       </h3>
+      <h3
+        className='absolute top-32 uppercase tracking-[3px] text-gray-500 text-xs'>
+        Swipe right for more
+      </h3>
 
       <div className='w-full mt-16 flex space-x-5 overflow-x-scroll p-auto snap-x snap-mandatory scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80'>
         {experiences?.map(experience => (

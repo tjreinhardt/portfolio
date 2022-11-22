@@ -28,8 +28,8 @@ function Hero({ pageInfo }: Props) {
       />
       <div className='z-20'>
         <h2 className='text-xs sm:text-sm uppercase text-gray-500 pb-2 tracking-[10px] md:tracking-[15px]'>Software Engineer</h2>
-        <h1 className='text-3xl md:text-5xl lg:text-6xl font-semibold scroll-px-10 pl-5 pr-5'>
-          <span className='mr-3'>{text}</span>
+        <h1 className='text-xl md:text-5xl lg:text-6xl font-semibold scroll-px-10 pl-5 pr-5'>
+          <span className='mr-3 text-xl md:text-3xl'>{text}</span>
           <Cursor cursorColor='#f7AB0A' />
         </h1>
         <div>
