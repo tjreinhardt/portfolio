@@ -19,15 +19,15 @@ function ExperienceCard({ experience }: Props) {
         transition={{ duration: 1.2 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className='w-32 h-32 min-h-32 rounded-full md:rounded-full xl:w-[200px] xl:h-[200px] object-cover object-center'
+        className='w-32 h-32 min-h-32 rounded-full md:rounded-full xl:w-[100px] xl:h-[100px] object-cover object-center'
         src={urlFor(experience?.companyImage).url()}
         alt=""
       />
 
       <div className='px-0 md:px-10'>
-        <h4 className='text-2xl md:text-4xl font-light text-center md:text-start'>{experience.jobTitle}</h4>
+        <h4 className='text-2xl md:text-3xl font-light text-center md:text-start'>{experience.jobTitle}</h4>
 
-        <p className='font-bold text-xl mt-1 text-center md:text-start'> {experience.company} </p>
+        <p className='font-bold text-lg mt-1 text-center md:text-start'> {experience.company} </p>
         <div className='flex space-x-2 my-4 flex-wrap'>
           {experience.technologies.map((technology) => (
             <img
