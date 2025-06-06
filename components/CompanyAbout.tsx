@@ -111,20 +111,50 @@ function CompanyAbout({ companyInfo }: Props) {
                 <span className='text-2xl mr-3'>💎</span>
                 Core Values
               </h5>
-              <div className='grid grid-cols-2 lg:grid-cols-3 gap-3'>
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={{
+                  hidden: {},
+                  visible: {
+                    transition: {
+                      staggerChildren: 0.1
+                    }
+                  }
+                }}
+                className='grid grid-cols-2 lg:grid-cols-3 gap-3'
+              >
                 {companyInfo.values.map((value: string, index: number) => (
                   <motion.div 
-                    key={index} 
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.05, y: -1 }}
-                    className='bg-[#292929] hover:bg-[#333333] rounded-lg p-3 text-center border border-gray-600 hover:border-[#F7AB0A]/30 transition-all duration-300 hover:shadow-md'
+                    key={index}
+                    variants={{
+                      hidden: { 
+                        scale: 0.8,
+                        opacity: 0,
+                        y: 20
+                      },
+                      visible: { 
+                        scale: 1,
+                        opacity: 1,
+                        y: 0,
+                        transition: {
+                          duration: 0.5,
+                          ease: [0.25, 0.46, 0.45, 0.94]
+                        }
+                      }
+                    }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -2,
+                      transition: { duration: 0.2 }
+                    }}
+                    className='bg-[#292929] hover:bg-[#333333] rounded-lg p-3 text-center border border-gray-600 hover:border-[#F7AB0A]/30 transition-colors duration-300 hover:shadow-md'
                   >
                     <span className='text-sm font-medium text-gray-200'>{value}</span>
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
           )}
           

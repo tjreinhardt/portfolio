@@ -102,10 +102,10 @@ function CompanyHero({ companyInfo }: Props) {
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
           className='mb-8'
         >
-          <div className='relative w-24 h-24 mx-auto mb-6'>
+          <div className='relative w-72 h-72 mx-auto mb-4 transform -translate-x-2'>
             <Image 
               className='object-contain'
-              src='/logos/breme-logo-concept-1.svg'
+              src='/logos/icon.png'
               alt='Breme AI Logo'
               fill
               priority
@@ -121,7 +121,7 @@ function CompanyHero({ companyInfo }: Props) {
           className='mb-8'
         >
           <h2 className='text-sm md:text-base uppercase text-[#F7AB0A] pb-4 tracking-[8px] md:tracking-[15px] font-medium'>
-            BREME AI
+            BREME
           </h2>
           <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight'>
             <span className='mr-3'>{text}</span>

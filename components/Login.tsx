@@ -48,7 +48,7 @@ const Login = ({ onLogin }: Props) => {
             className="relative w-48 h-24 mx-auto mb-6"
           >
             <Image 
-              src='/breme-logo.png'
+              src='/logos/icon.png'
               alt='Breme AI Logo'
               fill
               className='object-contain'

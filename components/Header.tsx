@@ -18,7 +18,6 @@ function Header({ socials, onLogout }: Props) {
   const [autoHideTimer, setAutoHideTimer] = useState<NodeJS.Timeout | null>(null);
 
   const navigationItems = [
-    { href: "#hero", label: "Home" },
     { href: "#about", label: "About" },
     { href: "#ai-services", label: "AI Services" },
     { href: "#business", label: "Business Model" },
@@ -35,12 +34,20 @@ function Header({ socials, onLogout }: Props) {
       const isNowScrolled = scrollPosition > 50;
       setIsScrolled(isNowScrolled);
       
-      // Always show navbar initially, then auto-hide on desktop after delay
-      if (isNowScrolled && !isHoveringTop && window.innerWidth >= 1024) {
-        if (autoHideTimer) clearTimeout(autoHideTimer);
-        setAutoHideTimer(setTimeout(() => {
-          if (!isHoveringTop) setShowNavbar(false);
-        }, 3000)); // Hide after 3 seconds on desktop
+      // Show navbar when scrolling, auto-hide on desktop after delay
+      if (isNowScrolled) {
+        setShowNavbar(true);
+        // Clear any existing timer
+        if (autoHideTimer) {
+          clearTimeout(autoHideTimer);
+          setAutoHideTimer(null);
+        }
+        // Start auto-hide timer only if not hovering and on desktop
+        if (!isHoveringTop && window.innerWidth >= 1024) {
+          setAutoHideTimer(setTimeout(() => {
+            if (!isHoveringTop) setShowNavbar(false);
+          }, 2500)); // Hide after 2.5 seconds on desktop
+        }
       } else {
         setShowNavbar(true);
         if (autoHideTimer) {
@@ -75,15 +82,20 @@ function Header({ socials, onLogout }: Props) {
     // Start auto-hide timer if scrolled and on desktop
     if (isScrolled && window.innerWidth >= 1024) {
       setAutoHideTimer(setTimeout(() => {
-        setShowNavbar(false);
-      }, 2000));
+        if (!isHoveringTop) setShowNavbar(false);
+      }, 1500));
     }
   };
 
   const handleTopAreaHover = () => {
-    if (isScrolled && !showNavbar) {
+    if (isScrolled) {
       setShowNavbar(true);
       setIsHoveringTop(true);
+      // Clear any existing timer
+      if (autoHideTimer) {
+        clearTimeout(autoHideTimer);
+        setAutoHideTimer(null);
+      }
     }
   };
 
@@ -91,9 +103,17 @@ function Header({ socials, onLogout }: Props) {
     <>
       {/* Invisible hover area at top of screen */}
       <div 
-        className='fixed top-0 left-0 right-0 h-20 z-40 pointer-events-auto'
+        className='fixed top-0 left-0 right-0 h-24 z-40 pointer-events-auto'
         onMouseEnter={handleTopAreaHover}
-        onMouseLeave={() => setIsHoveringTop(false)}
+        onMouseLeave={() => {
+          setIsHoveringTop(false);
+          // Start auto-hide timer when leaving top area and scrolled on desktop
+          if (isScrolled && window.innerWidth >= 1024) {
+            setAutoHideTimer(setTimeout(() => {
+              if (!isHoveringTop) setShowNavbar(false);
+            }, 1500));
+          }
+        }}
       />
 
       {/* Header */}
@@ -109,15 +129,15 @@ function Header({ socials, onLogout }: Props) {
         }}
         onMouseEnter={handleNavbarEnter}
         onMouseLeave={handleNavbarLeave}
-        className={`fixed top-0 left-0 right-0 p-3 md:p-4 flex items-center justify-between z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 py-2 px-3 md:py-3 md:px-4 flex items-center justify-between z-50 transition-all duration-300 ${
           isScrolled 
             ? 'bg-[rgb(36,36,36)]/96 backdrop-blur-md shadow-lg border-b border-[#F7AB0A]/20' 
             : 'bg-transparent'
         }`}
       >
-        <div className='w-full max-w-7xl mx-auto flex items-center justify-between'>
+        <div className='w-full max-w-7xl mx-auto flex items-center justify-between px-2'>
           {/* Left side: Social Icons + Logo */}
-          <div className='flex items-center space-x-4'>
+                      <div className='flex items-center space-x-3'>
             <motion.div
               initial={{
                 x: -100,
@@ -139,7 +159,7 @@ function Header({ socials, onLogout }: Props) {
                     url={social.url}
                     fgColor="gray"
                     bgColor="transparent"
-                    className="!h-7 !w-7 md:!h-8 md:!w-8 hover:opacity-75 transition-opacity"
+                    className="!h-6 !w-6 md:!h-7 md:!w-7 hover:opacity-75 transition-opacity"
                   />
                 ))}
               </div>
@@ -162,9 +182,9 @@ function Header({ socials, onLogout }: Props) {
               className='hidden md:block'
             >
               <Link href="#hero">
-                <div className='relative w-16 h-8 cursor-pointer hover:opacity-80 transition-opacity'>
+                <div className='relative w-12 h-12 cursor-pointer hover:opacity-80 transition-opacity'>
                   <Image 
-                    src='/breme-logo.png'
+                    src='/logos/icon.png'
                     alt='Breme AI'
                     fill
                     className='object-contain'
@@ -188,7 +208,7 @@ function Header({ socials, onLogout }: Props) {
               duration: 0.8,
               delay: 0.2
             }}
-            className='hidden lg:flex flex-row items-center space-x-2 xl:space-x-3 text-gray-300 text-xs uppercase tracking-wide'
+            className='hidden lg:flex flex-row items-center space-x-1 xl:space-x-2 text-gray-300 text-xs uppercase tracking-wide'
           >
             {navigationItems.slice(0, -1).map((item) => (
               <Link 
@@ -203,7 +223,7 @@ function Header({ socials, onLogout }: Props) {
             {onLogout && (
               <button
                 onClick={onLogout}
-                className='bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 whitespace-nowrap ml-2'
+                className='bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black px-4 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 whitespace-nowrap ml-4'
               >
                 Logout
               </button>
@@ -251,12 +271,12 @@ function Header({ socials, onLogout }: Props) {
               className='flex flex-row items-center text-gray-300 cursor-pointer hover:text-[#F7AB0A] transition-colors group'
             >
               <SocialIcon
-                className='cursor-pointer !h-7 !w-7 xl:!h-8 xl:!w-8 group-hover:opacity-75 transition-opacity'
+                className='cursor-pointer !h-6 !w-6 md:!h-7 md:!w-7 group-hover:opacity-75 transition-opacity'
                 network="email"
                 fgColor='gray'
                 bgColor='transparent'
               />
-              <p className='uppercase ml-2 text-xs xl:text-sm text-gray-400 whitespace-nowrap'>
+              <p className='uppercase ml-2 text-xs text-gray-400 whitespace-nowrap'>
                 Get In Touch
               </p>
             </motion.div>
