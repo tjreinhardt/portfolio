@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { fadeInUp, staggerContainer, optimizedViewport, hoverLift, fadeIn } from '../utils/animations'
 
 function DataApplications() {
   const dataApplications = [
@@ -118,13 +119,13 @@ function DataApplications() {
 
   return (
     <motion.div 
-      initial={{ opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-10 justify-center mx-auto items-center py-20'
+      variants={fadeIn}
+      initial="initial"
+      whileInView="animate"
+      viewport={optimizedViewport}
+      className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-4 md:px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl text-center'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[8px] md:tracking-[12px] lg:tracking-[20px] text-gray-500 text-sm md:text-lg lg:text-2xl text-center'>
         Data Applications
       </h3>
 
@@ -134,66 +135,63 @@ function DataApplications() {
         
         {/* Hero Section */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ 
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='text-center mb-16'
         >
-          <h4 className='text-4xl font-bold text-[#F7AB0A] mb-6'>
+          <h4 className='text-3xl md:text-4xl font-bold text-[#F7AB0A] mb-6'>
             The Central Nervous System of Food Industry
           </h4>
-          <p className='text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8'>
+          <p className='text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8'>
             Our source-level food data creates endless partnership opportunities and revenue streams. 
-                         From preventing diseases to optimizing supply chains, we&apos;re reshaping how the world understands food.
+            From preventing diseases to optimizing supply chains, we&apos;re reshaping how the world understands food.
           </p>
           
-          <div className='bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 rounded-lg p-6 max-w-4xl mx-auto'>
+          <div className='bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 rounded-lg p-4 md:p-6 max-w-4xl mx-auto'>
             <div className='grid grid-cols-2 md:grid-cols-4 gap-4 text-center'>
               <div>
-                <div className='text-2xl font-bold text-[#F7AB0A]'>$1.2T+</div>
-                <div className='text-sm text-gray-300'>Total Addressable Market</div>
+                <div className='text-xl md:text-2xl font-bold text-[#F7AB0A]'>$1.2T+</div>
+                <div className='text-xs md:text-sm text-gray-300'>Total Addressable Market</div>
               </div>
               <div>
-                <div className='text-2xl font-bold text-green-400'>50+</div>
-                <div className='text-sm text-gray-300'>Integration Opportunities</div>
+                <div className='text-xl md:text-2xl font-bold text-green-400'>50+</div>
+                <div className='text-xs md:text-sm text-gray-300'>Integration Opportunities</div>
               </div>
               <div>
-                <div className='text-2xl font-bold text-blue-400'>15</div>
-                <div className='text-sm text-gray-300'>Revenue Streams</div>
+                <div className='text-xl md:text-2xl font-bold text-blue-400'>15</div>
+                <div className='text-xs md:text-sm text-gray-300'>Revenue Streams</div>
               </div>
               <div>
-                <div className='text-2xl font-bold text-purple-400'>∞</div>
-                <div className='text-sm text-gray-300'>Partnership Potential</div>
+                <div className='text-xl md:text-2xl font-bold text-purple-400'>∞</div>
+                <div className='text-xs md:text-sm text-gray-300'>Partnership Potential</div>
               </div>
             </div>
           </div>
         </motion.div>
 
         {/* Data Applications Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-8 mb-16'>
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
+          className='grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-16'
+        >
           {dataApplications.map((app, index) => (
             <motion.div
               key={index}
-              initial={{ y: 30, opacity: 0, scale: 0.95 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.15,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-              className='bg-[#292929] rounded-lg p-6 hover:bg-[#333333] transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#F7AB0A]/10'
+              variants={fadeIn}
+              {...hoverLift}
+              className='bg-[#292929] rounded-lg p-4 md:p-6 hover:bg-[#333333] transition-all duration-300 border border-gray-700 hover:border-[#F7AB0A]/30'
             >
               <div className='text-center mb-6'>
-                <div className='text-4xl mb-4'>{app.icon}</div>
-                <h5 className='text-xl font-semibold text-[#F7AB0A] mb-2'>
+                <div className='text-3xl md:text-4xl mb-4'>{app.icon}</div>
+                <h5 className='text-lg md:text-xl font-semibold text-[#F7AB0A] mb-2'>
                   {app.title}
                 </h5>
-                <p className='text-gray-300 text-sm mb-4'>
+                <p className='text-gray-300 text-sm mb-4 leading-relaxed'>
                   {app.description}
                 </p>
               </div>
@@ -234,48 +232,45 @@ function DataApplications() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Integration Ecosystem */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ 
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='mb-16'
         >
-          <h4 className='text-3xl font-bold text-white mb-8 text-center'>
+          <h4 className='text-2xl md:text-3xl font-bold text-white mb-8 text-center'>
             Partnership Ecosystem
           </h4>
           
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={optimizedViewport}
+            className='grid grid-cols-1 md:grid-cols-2 gap-6'
+          >
             {integrationEcosystem.map((ecosystem, index) => (
               <motion.div 
                 key={index}
-                initial={{ y: 40, opacity: 0, scale: 0.98 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1, scale: 1 }}
-                transition={{ 
-                  duration: 0.7, 
-                  delay: index * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-                className='bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10'
+                variants={fadeIn}
+                {...hoverLift}
+                className='bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg p-4 md:p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300'
               >
                 <div className='text-center mb-4'>
-                  <h5 className='text-xl font-semibold text-purple-400 mb-2'>
+                  <h5 className='text-lg md:text-xl font-semibold text-purple-400 mb-2'>
                     {ecosystem.category}
                   </h5>
-                  <div className='text-2xl font-bold text-white'>{ecosystem.value}</div>
+                  <div className='text-xl md:text-2xl font-bold text-white'>{ecosystem.value}</div>
                   <div className='text-sm text-gray-400'>Market Opportunity</div>
                 </div>
                 
                 <div className='mb-4'>
                   <div className='text-sm font-semibold text-white mb-2'>Integration Value:</div>
-                                     <div className='text-sm text-gray-300 italic'>&ldquo;{ecosystem.integration}&rdquo;</div>
+                  <div className='text-sm text-gray-300 italic'>&ldquo;{ecosystem.integration}&rdquo;</div>
                 </div>
                 
                 <div>
@@ -293,25 +288,25 @@ function DataApplications() {
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Revenue Potential */}
+        {/* Revenue Potential - "Why Our Data Is Incredibly Valuable" */}
         <motion.div
-          initial={{ y: 100, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-          className='bg-gradient-to-r from-[#F7AB0A]/20 to-yellow-600/20 rounded-lg p-8 text-center'
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
+          className='bg-gradient-to-r from-[#F7AB0A]/20 to-yellow-600/20 rounded-lg p-6 md:p-8 text-center'
         >
-          <h4 className='text-3xl font-bold text-[#F7AB0A] mb-6'>
+          <h4 className='text-2xl md:text-3xl font-bold text-[#F7AB0A] mb-6'>
             Why Our Data Is Incredibly Valuable
           </h4>
           
-          <div className='grid grid-cols-1 md:grid-cols-3 gap-8 mb-8'>
+          <div className='grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8'>
             <div>
               <h5 className='text-lg font-semibold text-white mb-3'>Source-Level Accuracy</h5>
-              <p className='text-sm text-gray-300'>
+              <p className='text-sm text-gray-300 leading-relaxed'>
                 Unlike aggregated data, we capture information at the point of origin - restaurants, farms, suppliers. 
                 This granular accuracy is impossible to replicate.
               </p>
@@ -319,28 +314,39 @@ function DataApplications() {
             
             <div>
               <h5 className='text-lg font-semibold text-white mb-3'>Real-Time Intelligence</h5>
-              <p className='text-sm text-gray-300'>
+              <p className='text-sm text-gray-300 leading-relaxed'>
                 Live transaction data combined with health outcomes creates predictive insights 
                 that can prevent diseases before they occur.
               </p>
             </div>
             
             <div>
-              <h5 className='text-lg font-semibold text-white mb-3'>Cross-Industry Applications</h5>
-              <p className='text-sm text-gray-300'>
-                Our data serves healthcare, finance, government, retail, and more. 
-                Each integration creates network effects that increase overall value.
+              <h5 className='text-lg font-semibold text-white mb-3'>Network Effects</h5>
+              <p className='text-sm text-gray-300 leading-relaxed'>
+                Each new food establishment exponentially increases data value. 
+                More connections = better predictions = higher revenue potential.
               </p>
             </div>
           </div>
           
-          <div className='bg-black/30 rounded-lg p-6'>
-                         <p className='text-lg text-white font-semibold mb-2'>
-               &ldquo;We&apos;re not just collecting data - we&apos;re creating the foundation for the next generation of food intelligence.&rdquo;
-             </p>
-            <p className='text-sm text-gray-400'>
-              Revenue potential: $100M+ annually from partnerships alone within 5 years
-            </p>
+          <div className='bg-[#292929] rounded-lg p-4 md:p-6'>
+            <h5 className='text-xl font-bold text-[#F7AB0A] mb-4'>
+              Conservative Revenue Projection
+            </h5>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-300'>
+              <div>
+                <div className='font-semibold text-green-400'>Year 1-2:</div>
+                <div>$50M-100M from initial partnerships</div>
+              </div>
+              <div>
+                <div className='font-semibold text-blue-400'>Year 3-5:</div>
+                <div>$500M-1B from scaled integrations</div>
+              </div>
+              <div>
+                <div className='font-semibold text-purple-400'>Year 5+:</div>
+                <div>$2B+ data monopoly value</div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>

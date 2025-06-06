@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { BusinessModel } from '../typings'
+import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Props = {
   businessModel: BusinessModel
@@ -137,30 +138,41 @@ function Business({ businessModel }: Props) {
 
         {/* Valuation Metrics */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          variants={fadeInUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Company Valuation Drivers</h3>
-          <div className="grid md:grid-cols-4 gap-6">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={optimizedViewport}
+            className="grid md:grid-cols-4 gap-6"
+          >
             {valuationMetrics.map((metric, index) => (
-              <div key={index} className="bg-[#292929] rounded-xl p-6 text-center border border-gray-700 hover:border-[#F7AB0A]/50 transition-all duration-300">
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                {...hoverLift}
+                className="bg-[#292929] rounded-xl p-6 text-center border border-gray-700 hover:border-[#F7AB0A]/50 transition-all duration-300"
+              >
                 <div className="text-3xl font-bold text-[#F7AB0A] mb-2">{metric.value}</div>
                 <div className="text-white font-semibold mb-2">{metric.label}</div>
                 <div className="text-sm text-gray-400">{metric.growth || metric.subtitle}</div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Acquisition Strategy Timeline */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          variants={fadeInUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Strategic Acquisition Timeline</h3>
@@ -205,30 +217,41 @@ function Business({ businessModel }: Props) {
 
         {/* Competitive Advantages */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Competitive Advantages</h3>
-          <div className="grid md:grid-cols-2 gap-8">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={optimizedViewport}
+            className="grid md:grid-cols-2 gap-8"
+          >
             {competitiveAdvantage.map((advantage, index) => (
-              <div key={index} className="bg-[#292929] rounded-xl p-8 border border-gray-700 hover:border-[#F7AB0A]/30 transition-all duration-300">
+              <motion.div 
+                key={index} 
+                variants={fadeIn}
+                {...hoverLift}
+                className="bg-[#292929] rounded-xl p-8 border border-gray-700 hover:border-[#F7AB0A]/30 transition-all duration-300"
+              >
                 <h4 className="text-xl font-bold text-[#F7AB0A] mb-4">{advantage.title}</h4>
                 <p className="text-gray-300 mb-4 leading-relaxed">{advantage.description}</p>
                 <div className="text-green-400 font-semibold">{advantage.impact}</div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Market Comparison */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className="mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Market Valuation Comparison</h3>
@@ -260,10 +283,10 @@ function Business({ businessModel }: Props) {
 
         {/* Investment Thesis */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className="text-center"
         >
           <div className="bg-gradient-to-r from-[#F7AB0A]/20 via-transparent to-[#F7AB0A]/20 p-12 rounded-2xl border border-[#F7AB0A]/30">

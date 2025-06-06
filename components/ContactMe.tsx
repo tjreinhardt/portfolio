@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm, SubmitHandler } from "react-hook-form"
+import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Inputs = {
   name: string,
@@ -90,10 +91,10 @@ ${formData.name}`;
         
         {/* Hero Section */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='text-center mb-16'
         >
           <h4 className='text-3xl md:text-5xl font-bold text-white mb-6'>
@@ -125,10 +126,10 @@ ${formData.name}`;
 
         {/* Inquiry Types */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='mb-16'
         >
           <h5 className='text-2xl font-bold text-white mb-8 text-center'>
@@ -167,10 +168,10 @@ ${formData.name}`;
 
         {/* Contact Form */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='bg-gradient-to-br from-[#292929] to-[#1f1f1f] rounded-lg p-8 shadow-2xl'
         >
           <div className='flex flex-col lg:flex-row gap-12'>
@@ -309,10 +310,10 @@ ${formData.name}`;
 
         {/* Final CTA */}
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='mt-16 text-center bg-gradient-to-r from-[#F7AB0A]/10 to-green-500/10 rounded-lg p-8'
         >
           <h5 className='text-2xl font-bold text-white mb-4'>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Props = {
   customers: any[]
@@ -108,13 +109,13 @@ function Customers({ customers }: Props) {
 
   return (
     <motion.div 
-      initial={{ opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
-      className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-10 justify-center mx-auto items-center py-20'
+      variants={fadeInUp}
+      initial="initial"
+      whileInView="animate"
+      viewport={optimizedViewport}
+      className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-4 md:px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl text-center'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[8px] md:tracking-[12px] lg:tracking-[20px] text-gray-500 text-sm md:text-lg lg:text-2xl text-center'>
         Customer Benefits
       </h3>
 
@@ -124,43 +125,40 @@ function Customers({ customers }: Props) {
         
         {/* Hero Section */}
         <motion.div 
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ 
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
+          variants={fadeIn}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
           className='text-center mb-16'
         >
-          <h4 className='text-4xl font-bold text-[#F7AB0A] mb-6'>
+          <h4 className='text-3xl md:text-4xl font-bold text-[#F7AB0A] mb-6'>
             Your Data = Your Rewards
           </h4>
-          <p className='text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8'>
+          <p className='text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8'>
             Get incredible benefits at your favorite venues while helping us create a better food industry. 
             The more you participate, the more you save, and the safer everyone becomes.
           </p>
           
-          <div className='flex flex-col md:flex-row gap-6 justify-center items-center bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 rounded-lg p-6 max-w-4xl mx-auto'>
-            <div className='text-center'>
-              <div className='text-3xl mb-2'>🏪</div>
-              <div className='text-sm text-gray-300'>
+          <div className='flex flex-col md:flex-row gap-4 md:gap-6 justify-center items-center bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 rounded-lg p-4 md:p-6 max-w-4xl mx-auto'>
+            <div className='text-center flex-1'>
+              <div className='text-2xl md:text-3xl mb-2'>🏪</div>
+              <div className='text-xs md:text-sm text-gray-300'>
                 <div className='font-semibold text-white'>Venues Benefit</div>
                 More customers, better insights
               </div>
             </div>
-            <div className='text-4xl text-[#F7AB0A]'>⚡</div>
-            <div className='text-center'>
-              <div className='text-3xl mb-2'>👤</div>
-              <div className='text-sm text-gray-300'>
+            <div className='text-2xl md:text-4xl text-[#F7AB0A]'>⚡</div>
+            <div className='text-center flex-1'>
+              <div className='text-2xl md:text-3xl mb-2'>👤</div>
+              <div className='text-xs md:text-sm text-gray-300'>
                 <div className='font-semibold text-white'>You Benefit</div>
                 Discounts, rewards, safety
               </div>
             </div>
-            <div className='text-4xl text-[#F7AB0A]'>⚡</div>
-            <div className='text-center'>
-              <div className='text-3xl mb-2'>🧠</div>
-              <div className='text-sm text-gray-300'>
+            <div className='text-2xl md:text-4xl text-[#F7AB0A]'>⚡</div>
+            <div className='text-center flex-1'>
+              <div className='text-2xl md:text-3xl mb-2'>🧠</div>
+              <div className='text-xs md:text-sm text-gray-300'>
                 <div className='font-semibold text-white'>AI Benefits</div>
                 Smarter food industry
               </div>
@@ -169,26 +167,26 @@ function Customers({ customers }: Props) {
         </motion.div>
 
         {/* Customer Benefits Grid */}
-        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16'>
+        <motion.div 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
+          className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 mb-16'
+        >
           {customerBenefits.map((benefit, index) => (
             <motion.div 
               key={benefit.id}
-              initial={{ y: 30, opacity: 0, scale: 0.95 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.8, 
-                delay: index * 0.12,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-              className='bg-[#292929] rounded-lg p-6 hover:bg-[#333333] transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#F7AB0A]/10'
+              variants={fadeIn}
+              {...hoverLift}
+              className='bg-[#292929] rounded-lg p-4 md:p-6 hover:bg-[#333333] transition-all duration-300 border border-gray-700 hover:border-[#F7AB0A]/30'
             >
               <div className='text-center mb-6'>
-                <div className='text-5xl mb-4'>{benefit.icon}</div>
-                <h5 className='text-xl font-semibold text-[#F7AB0A] mb-2'>
+                <div className='text-4xl md:text-5xl mb-4'>{benefit.icon}</div>
+                <h5 className='text-lg md:text-xl font-semibold text-[#F7AB0A] mb-2'>
                   {benefit.title}
                 </h5>
-                <p className='text-gray-300 text-sm mb-4'>
+                <p className='text-gray-300 text-sm mb-4 leading-relaxed'>
                   {benefit.description}
                 </p>
                 <div className='inline-block bg-[#F7AB0A]/20 text-[#F7AB0A] px-3 py-1 rounded-full text-xs font-semibold'>
@@ -221,25 +219,22 @@ function Customers({ customers }: Props) {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Featured Benefit - Safe Ride Home */}
         <motion.div 
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ 
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
-          className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg p-8 mb-16 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10'
+          variants={hoverLift}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
+          className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg p-6 md:p-8 mb-16 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300'
         >
           <div className='text-center mb-8'>
-            <div className='text-6xl mb-4'>🚗💙</div>
-            <h4 className='text-3xl font-bold text-blue-400 mb-4'>
+            <div className='text-5xl md:text-6xl mb-4'>🚗💙</div>
+            <h4 className='text-2xl md:text-3xl font-bold text-blue-400 mb-4'>
               Safe Ride Home Program
             </h4>
-            <p className='text-xl text-gray-300 max-w-3xl mx-auto'>
+            <p className='text-lg md:text-xl text-gray-300 max-w-3xl mx-auto'>
               Our flagship safety initiative - preventing DUIs while keeping the party going
             </p>
           </div>
@@ -285,32 +280,29 @@ function Customers({ customers }: Props) {
 
         {/* Call to Action */}
         <motion.div 
-          initial={{ y: 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1 }}
-          transition={{ 
-            duration: 0.8,
-            ease: [0.25, 0.46, 0.45, 0.94]
-          }}
-          className='text-center bg-gradient-to-r from-[#F7AB0A]/20 to-yellow-600/20 rounded-lg p-8 hover:shadow-lg hover:shadow-[#F7AB0A]/10 transition-all duration-300'
+          variants={fadeInUp}
+          initial="initial"
+          whileInView="animate"
+          viewport={optimizedViewport}
+          className='text-center bg-gradient-to-r from-[#F7AB0A]/20 to-yellow-600/20 rounded-lg p-6 md:p-8 transition-all duration-300'
         >
-          <h4 className='text-2xl font-bold text-[#F7AB0A] mb-4'>
+          <h4 className='text-xl md:text-2xl font-bold text-[#F7AB0A] mb-4'>
             Ready to Start Earning Rewards?
           </h4>
-          <p className='text-lg text-gray-300 mb-6 max-w-2xl mx-auto'>
+          <p className='text-base md:text-lg text-gray-300 mb-6 max-w-2xl mx-auto'>
             Join the thousands of diners who are already saving money, staying safe, and helping revolutionize the food industry.
           </p>
           
-          <div className='flex flex-col md:flex-row gap-4 justify-center'>
-            <button className='bg-[#F7AB0A] text-black py-3 px-8 rounded-lg font-semibold hover:bg-[#F7AB0A]/90 transition-colors'>
+          <div className='flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto'>
+            <button className='bg-[#F7AB0A] text-black py-3 px-6 md:px-8 rounded-lg font-semibold hover:bg-[#F7AB0A]/90 transition-colors text-sm md:text-base'>
               Download the App
             </button>
-            <button className='border border-[#F7AB0A] text-[#F7AB0A] py-3 px-8 rounded-lg font-semibold hover:bg-[#F7AB0A]/10 transition-colors'>
+            <button className='border border-[#F7AB0A] text-[#F7AB0A] py-3 px-6 md:px-8 rounded-lg font-semibold hover:bg-[#F7AB0A]/10 transition-colors text-sm md:text-base'>
               Find Partner Venues
             </button>
           </div>
           
-          <div className='mt-6 flex justify-center space-x-8 text-sm text-gray-400'>
+          <div className='mt-6 flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm text-gray-400'>
             <div>
               <span className='font-semibold text-[#F7AB0A]'>1M+</span> Active Users
             </div>
