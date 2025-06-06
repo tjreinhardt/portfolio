@@ -1,14 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import { Social } from "../../typings";
-import { socials } from "../../data/companyData";
+import { LaunchInfo } from "../../typings";
+import { launchInfo } from "../../data/companyData";
 
 type Data = {
-  socials: Social[]
+  launchInfo: LaunchInfo
 }
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  res.status(200).json({ socials })
-}
+  res.status(200).json({ launchInfo })
+} 

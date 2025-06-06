@@ -19,7 +19,7 @@ function About({ pageInfo }: Props) {
         About
       </h3>
 
-      <motion.img
+      {/* <motion.img
         initial={{
           x: -200,
           opacity: 0,
@@ -31,7 +31,7 @@ function About({ pageInfo }: Props) {
         viewport={{ once: true }}
         src={urlFor(pageInfo?.profilePic).url()}
         className='-mb-24 md:mb-0 flex-shrink-0 w-40 h-40 mt-[110px] rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[500px] xl:h-[600px]'
-      />
+      /> */}
 
       <div className='space-y-5 md:space-y-5 px-0 md:px-10 mt-24'>
         <h4 className='text-xl md:text-2xl lg:text-4xl font-semibold mt-6'>Here is a{" "}

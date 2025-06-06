@@ -1,5 +1,5 @@
-import React from 'react'
-import { Cursor, useTypewriter } from 'react-simple-typewriter'
+import React, { useEffect, useState } from 'react'
+// import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import BackgroundCircles from './BackgroundCircles'
 import timpic from '../assets/tim-pic.png'
 import Link from 'next/link'
@@ -11,13 +11,20 @@ type Props = {
 };
 
 function Hero({ pageInfo }: Props) {
-  const [text, count] = useTypewriter({
-    words: [`Hi, The Name's ${pageInfo?.name}`,
-      "Guy-who-loves-RedBull.tsx",
-      "<ButLovesToCodeMore />"],
-    loop: true,
-    delaySpeed: 2000,
-  })
+  // const [mounted, setMounted] = useState(false);
+  
+  // const [text, count] = useTypewriter({
+  //   words: [`Hi, The Name's ${pageInfo?.name}`,
+  //     "Guy-who-loves-RedBull.tsx",
+  //     "<ButLovesToCodeMore />"],
+  //   loop: true,
+  //   delaySpeed: 2000,
+  // })
+
+  // useEffect(() => {
+  //   setMounted(true);
+  // }, []);
+
   return (
     <div className='h-screen flex flex-col space-y-8 items-center justify-center text-center overflow-hidden mb-10'>
       <BackgroundCircles />
@@ -29,8 +36,11 @@ function Hero({ pageInfo }: Props) {
       <div className='z-20'>
         <h2 className='text-xs sm:text-sm uppercase text-gray-500 pb-2 tracking-[10px] md:tracking-[15px]'>Software Engineer</h2>
         <h1 className='text-xl md:text-5xl lg:text-6xl font-semibold scroll-px-10 pl-5 pr-5'>
-          <span className='mr-3 text-xl md:text-3xl'>{text}</span>
-          <Cursor cursorColor='#f7AB0A' />
+          <span className='mr-3 text-xl md:text-3xl'>
+            Hi, The Name&apos;s {pageInfo?.name}
+          </span>
+          {/* {mounted ? text : `Hi, The Name's ${pageInfo?.name}`} */}
+          {/* {mounted && <Cursor cursorColor='#f7AB0A' />} */}
         </h1>
         <div>
           <Link href="#about">
