@@ -2,7 +2,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { LaunchInfo } from '../typings'
-import { urlFor } from '../utils/imageHelper'
 
 type Props = {
   launchInfo: LaunchInfo
