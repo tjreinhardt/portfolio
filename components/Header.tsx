@@ -6,13 +6,15 @@ import { Social } from "../typings"
 
 type Props = {
   socials: Social[]
+  onLogout?: () => void
 }
 
-function Header({ socials }: Props) {
+function Header({ socials, onLogout }: Props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [showNavbar, setShowNavbar] = useState(true);
   const [isHoveringTop, setIsHoveringTop] = useState(false);
+  const [autoHideTimer, setAutoHideTimer] = useState<NodeJS.Timeout | null>(null);
 
   const navigationItems = [
     { href: "#hero", label: "Home" },
@@ -30,38 +32,68 @@ function Header({ socials }: Props) {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
-      const isNowScrolled = scrollPosition > 100;
+      const isNowScrolled = scrollPosition > 50;
       setIsScrolled(isNowScrolled);
       
-      // Show navbar when at top, hide when scrolled (unless hovering)
-      setShowNavbar(!isNowScrolled || isHoveringTop);
+      // Always show navbar initially, then auto-hide on desktop after delay
+      if (isNowScrolled && !isHoveringTop && window.innerWidth >= 1024) {
+        if (autoHideTimer) clearTimeout(autoHideTimer);
+        setAutoHideTimer(setTimeout(() => {
+          if (!isHoveringTop) setShowNavbar(false);
+        }, 3000)); // Hide after 3 seconds on desktop
+      } else {
+        setShowNavbar(true);
+        if (autoHideTimer) {
+          clearTimeout(autoHideTimer);
+          setAutoHideTimer(null);
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isHoveringTop]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (autoHideTimer) clearTimeout(autoHideTimer);
+    };
+  }, [isHoveringTop, autoHideTimer]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
   const closeMenu = () => setIsMenuOpen(false);
 
-  // Handle top hover area
-  const handleTopHover = () => {
-    if (isScrolled) {
-      setIsHoveringTop(true);
+  // Handle navbar hover and interaction
+  const handleNavbarEnter = () => {
+    setIsHoveringTop(true);
+    setShowNavbar(true);
+    if (autoHideTimer) {
+      clearTimeout(autoHideTimer);
+      setAutoHideTimer(null);
     }
   };
 
-  const handleTopLeave = () => {
+  const handleNavbarLeave = () => {
     setIsHoveringTop(false);
+    // Start auto-hide timer if scrolled and on desktop
+    if (isScrolled && window.innerWidth >= 1024) {
+      setAutoHideTimer(setTimeout(() => {
+        setShowNavbar(false);
+      }, 2000));
+    }
+  };
+
+  const handleTopAreaHover = () => {
+    if (isScrolled && !showNavbar) {
+      setShowNavbar(true);
+      setIsHoveringTop(true);
+    }
   };
 
   return (
     <>
       {/* Invisible hover area at top of screen */}
       <div 
-        className='fixed top-0 left-0 right-0 h-16 z-40 pointer-events-auto'
-        onMouseEnter={handleTopHover}
-        onMouseLeave={handleTopLeave}
+        className='fixed top-0 left-0 right-0 h-20 z-40 pointer-events-auto'
+        onMouseEnter={handleTopAreaHover}
+        onMouseLeave={() => setIsHoveringTop(false)}
       />
 
       {/* Header */}
@@ -69,15 +101,17 @@ function Header({ socials }: Props) {
         initial={{ y: 0 }}
         animate={{ 
           y: showNavbar ? 0 : -100,
-          opacity: showNavbar ? 1 : 0
+          opacity: showNavbar ? 1 : 0.95
         }}
         transition={{ 
           duration: 0.3,
           ease: [0.25, 0.46, 0.45, 0.94]
         }}
-        className={`fixed top-0 left-0 right-0 p-3 md:p-5 flex items-center justify-between z-50 transition-all duration-300 ${
-          isScrolled || isHoveringTop 
-            ? 'bg-[rgb(36,36,36)]/95 backdrop-blur-sm shadow-lg' 
+        onMouseEnter={handleNavbarEnter}
+        onMouseLeave={handleNavbarLeave}
+        className={`fixed top-0 left-0 right-0 p-3 md:p-4 flex items-center justify-between z-50 transition-all duration-300 ${
+          isScrolled 
+            ? 'bg-[rgb(36,36,36)]/96 backdrop-blur-md shadow-lg border-b border-[#F7AB0A]/20' 
             : 'bg-transparent'
         }`}
       >
@@ -124,7 +158,7 @@ function Header({ socials }: Props) {
               duration: 0.8,
               delay: 0.2
             }}
-            className='hidden lg:flex flex-row space-x-4 xl:space-x-6 text-gray-300 text-xs xl:text-sm uppercase tracking-wider'
+            className='hidden lg:flex flex-row items-center space-x-4 xl:space-x-6 text-gray-300 text-xs xl:text-sm uppercase tracking-wider'
           >
             {navigationItems.slice(0, -1).map((item) => (
               <Link 
@@ -136,6 +170,14 @@ function Header({ socials }: Props) {
                 {item.label}
               </Link>
             ))}
+            {onLogout && (
+              <button
+                onClick={onLogout}
+                className='bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black px-3 py-1.5 rounded-md text-xs xl:text-sm font-semibold transition-all duration-200 whitespace-nowrap'
+              >
+                Logout
+              </button>
+            )}
           </motion.nav>
 
           {/* Mobile Menu Button */}
@@ -261,6 +303,27 @@ function Header({ socials }: Props) {
                         </Link>
                       </motion.li>
                     ))}
+                    {onLogout && (
+                      <motion.li
+                        initial={{ x: 50, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ 
+                          delay: navigationItems.length * 0.08,
+                          duration: 0.3,
+                          ease: [0.25, 0.46, 0.45, 0.94]
+                        }}
+                      >
+                        <button
+                          onClick={() => {
+                            onLogout();
+                            closeMenu();
+                          }}
+                          className='w-full text-left py-3 px-4 bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black rounded-lg transition-all duration-200 uppercase tracking-wide text-sm font-semibold border border-transparent'
+                        >
+                          Logout
+                        </button>
+                      </motion.li>
+                    )}
                   </ul>
                 </nav>
 

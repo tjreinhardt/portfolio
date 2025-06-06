@@ -10,11 +10,12 @@ function CompanyAbout({ companyInfo }: Props) {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
+      viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='h-screen flex flex-col relative text-center md:text-left md:flex-row max-w-7xl px-10 justify-evenly mx-auto items-center'
+      className='min-h-screen flex flex-col relative text-center md:text-left md:flex-row max-w-7xl px-6 md:px-10 justify-evenly mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'>
         About
       </h3>
 
@@ -26,8 +27,8 @@ function CompanyAbout({ companyInfo }: Props) {
         transition={{
           duration: 1.2,
         }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true }}
+      viewport={{ once: true }}
+      whileInView={{ opacity: 1, x: 0 }}
         className='mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]'
       >
         <Image 

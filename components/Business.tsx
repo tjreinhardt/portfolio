@@ -9,9 +9,9 @@ type Props = {
 function Business({ businessModel }: Props) {
   const valuationMetrics = [
     { label: "TAM (Food Industry Data)", value: "$9.4T", growth: "+6.4% YoY" },
-    { label: "Potential POS Acquisitions", value: "500+", subtitle: "Companies with 100+ clients" },
-    { label: "Combined Restaurant Clients", value: "50K+", subtitle: "Immediate market access" },
-    { label: "Data Revenue Potential", value: "$100M+", subtitle: "Annual within 5 years" }
+    { label: "Potential POS Acquisitions", value: "2,000+", subtitle: "Food establishments with 50+ clients" },
+    { label: "Combined Food Establishments", value: "250K+", subtitle: "Restaurants, grocery, venues, markets" },
+    { label: "Data Revenue Potential", value: "$500M+", subtitle: "Annual within 5 years" }
   ];
 
   const acquisitionStrategy = [
@@ -25,15 +25,15 @@ function Business({ businessModel }: Props) {
     {
       phase: "Phase 2: Strategic Acquisition", 
       timeline: "18-30 months",
-      funding: "$50M-$200M Series A",
-      milestones: ["First POS acquisition", "100+ restaurant integration", "Data platform launch"],
+      funding: "$50M-$300M Series A",
+      milestones: ["First POS acquisition", "100+ food establishment integration", "Data platform launch"],
       icon: "🎯"
     },
     {
       phase: "Phase 3: Market Expansion",
       timeline: "30-42 months", 
-      funding: "$200M+ Series B",
-      milestones: ["Multi-state presence", "10K+ restaurants", "Partnership ecosystem"],
+      funding: "$1B+ Series B",
+      milestones: ["Multi-state presence", "10K+ food establishments", "Partnership ecosystem"],
       icon: "📈"
     }
   ];
@@ -46,17 +46,17 @@ function Business({ businessModel }: Props) {
     },
     {
       title: "Strategic Acquisition Model", 
-      description: "Acquire existing POS companies with established restaurant relationships",
-      impact: "Immediate access to 50K+ restaurants vs years of customer acquisition"
+      description: "Acquire existing POS companies with established food industry relationships",
+      impact: "Immediate access to 250K+ food establishments vs years of customer acquisition"
     },
     {
       title: "Data-for-Discount Innovation",
-      description: "Revolutionary pricing model: restaurants save 25-50% for data sharing",
-      impact: "Solves restaurant failure crisis (17% fail year 1, 49% within 5 years)"
+      description: "Revolutionary pricing model: food establishments save 25-50% for data sharing",
+      impact: "Reduces business failure rates across the food industry (17% fail year 1, 49% within 5 years)"
     },
     {
       title: "Network Effects Platform",
-      description: "More restaurants = better insights = more valuable partnerships",
+      description: "More food establishments = better insights = more valuable partnerships",
       impact: "Exponential value growth as platform scales"
     }
   ];
@@ -75,13 +75,14 @@ function Business({ businessModel }: Props) {
       
       <motion.div 
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
         className="max-w-7xl mx-auto"
       >
         {/* Header */}
         <div className="text-center mb-16">
-          <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl mb-8">
+          <h3 className="uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl mb-8 text-center">
             Business Strategy
           </h3>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -90,12 +91,55 @@ function Business({ businessModel }: Props) {
           <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Strategic POS acquisition combined with AI-powered food intelligence creates the most valuable data platform in the $9.4T food industry
           </p>
+          
+          {/* Market Scope Clarification */}
+          <div className="mt-12 bg-gradient-to-r from-[#F7AB0A]/10 to-blue-500/10 rounded-xl p-6 border border-[#F7AB0A]/20">
+            <h4 className="text-2xl font-bold text-[#F7AB0A] mb-4 text-center">
+              Beyond Restaurants: Complete Food Industry Domination
+            </h4>
+            <p className="text-lg text-gray-300 text-center mb-6">
+              Our vision encompasses every point where food is sold, creating the ultimate food data monopoly
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 text-center">
+              <div className="bg-[#292929]/50 rounded-lg p-4">
+                <div className="text-2xl mb-2">🍽️</div>
+                <div className="text-sm font-semibold text-white">Restaurants</div>
+                <div className="text-xs text-gray-400">400K+ in US</div>
+              </div>
+              <div className="bg-[#292929]/50 rounded-lg p-4">
+                <div className="text-2xl mb-2">🛒</div>
+                <div className="text-sm font-semibold text-white">Grocery Stores</div>
+                <div className="text-xs text-gray-400">63K+ locations</div>
+              </div>
+              <div className="bg-[#292929]/50 rounded-lg p-4">
+                <div className="text-2xl mb-2">🍺</div>
+                <div className="text-sm font-semibold text-white">Bars & Pubs</div>
+                <div className="text-xs text-gray-400">65K+ venues</div>
+              </div>
+              <div className="bg-[#292929]/50 rounded-lg p-4">
+                <div className="text-2xl mb-2">🏬</div>
+                <div className="text-sm font-semibold text-white">Wholesale</div>
+                <div className="text-xs text-gray-400">15K+ distributors</div>
+              </div>
+              <div className="bg-[#292929]/50 rounded-lg p-4">
+                <div className="text-2xl mb-2">🌾</div>
+                <div className="text-sm font-semibold text-white">Farmers Markets</div>
+                <div className="text-xs text-gray-400">8K+ markets</div>
+              </div>
+              <div className="bg-[#292929]/50 rounded-lg p-4">
+                <div className="text-2xl mb-2">🎪</div>
+                <div className="text-sm font-semibold text-white">Entertainment</div>
+                <div className="text-xs text-gray-400">Venues & Events</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Valuation Metrics */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-20"
         >
@@ -114,7 +158,8 @@ function Business({ businessModel }: Props) {
         {/* Acquisition Strategy Timeline */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mb-20"
         >
@@ -161,7 +206,8 @@ function Business({ businessModel }: Props) {
         {/* Competitive Advantages */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mb-20"
         >
@@ -180,7 +226,8 @@ function Business({ businessModel }: Props) {
         {/* Market Comparison */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="mb-20"
         >
@@ -214,7 +261,8 @@ function Business({ businessModel }: Props) {
         {/* Investment Thesis */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.0 }}
           className="text-center"
         >
@@ -231,7 +279,7 @@ function Business({ businessModel }: Props) {
               </div>
               <div>
                 <h4 className="text-xl font-semibold text-[#F7AB0A] mb-3">Network Effects</h4>
-                <p className="text-gray-300">More restaurants = better insights = more valuable partnerships = exponential value growth</p>
+                <p className="text-gray-300">More food establishments = better insights = more valuable partnerships = exponential value growth</p>
               </div>
             </div>
             <div className="mt-8 p-6 bg-[#292929] rounded-xl">

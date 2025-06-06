@@ -97,13 +97,14 @@ function AIServices({ aiServices }: Props) {
       
       <motion.div 
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
         className="max-w-7xl mx-auto"
       >
         {/* Header */}
         <div className="text-center mb-16">
-          <h3 className="uppercase tracking-[20px] text-gray-500 text-2xl mb-8">
+          <h3 className="uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl mb-8 text-center">
             AI Services
           </h3>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -117,7 +118,8 @@ function AIServices({ aiServices }: Props) {
         {/* AI Capabilities Overview */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className="mb-20"
         >
@@ -143,7 +145,8 @@ function AIServices({ aiServices }: Props) {
         {/* Industry Problems We Solve */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="mb-20"
         >
@@ -163,7 +166,8 @@ function AIServices({ aiServices }: Props) {
         {/* Core AI Services */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
           className="mb-20"
         >
@@ -173,7 +177,8 @@ function AIServices({ aiServices }: Props) {
               <motion.div
                 key={index}
                 initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
                 className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-12 items-center`}
               >
@@ -216,7 +221,8 @@ function AIServices({ aiServices }: Props) {
         {/* Technology Stack */}
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.6 }}
           className="mb-20"
         >
@@ -250,7 +256,8 @@ function AIServices({ aiServices }: Props) {
         {/* Call to Action */}
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.8 }}
           className="text-center"
         >
@@ -261,7 +268,7 @@ function AIServices({ aiServices }: Props) {
             </p>
             <div className="flex flex-col md:flex-row gap-4 justify-center">
               <button className="bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black font-bold py-4 px-8 rounded-lg transition-colors duration-300">
-                Schedule Demo
+                Reach Out
               </button>
               <button className="border-2 border-[#F7AB0A] text-[#F7AB0A] hover:bg-[#F7AB0A] hover:text-black font-bold py-4 px-8 rounded-lg transition-all duration-300">
                 Learn More

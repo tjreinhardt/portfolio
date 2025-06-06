@@ -45,11 +45,12 @@ function Launch({ launchInfo }: Props) {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
+      viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl text-center'>
         Launch Timeline
       </h3>
 
@@ -60,7 +61,8 @@ function Launch({ launchInfo }: Props) {
         {/* Current Stage Hero */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='text-center mb-16'
         >
@@ -78,7 +80,8 @@ function Launch({ launchInfo }: Props) {
         {/* Funding Requirements */}
         <motion.div 
           initial={{ x: -100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='mb-16'
         >
@@ -154,7 +157,8 @@ function Launch({ launchInfo }: Props) {
         {/* Timeline */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='mb-16'
         >
@@ -171,7 +175,8 @@ function Launch({ launchInfo }: Props) {
                 <motion.div 
                   key={index}
                   initial={{ x: -100, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ x: 0, opacity: 1 }}
                   transition={{ duration: 0.6, delay: index * 0.2 }}
                   className='relative flex items-start'
                 >
@@ -217,7 +222,8 @@ function Launch({ launchInfo }: Props) {
         {/* Risk Assessment */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='grid grid-cols-1 md:grid-cols-2 gap-8'
         >

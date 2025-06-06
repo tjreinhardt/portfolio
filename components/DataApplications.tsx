@@ -119,11 +119,12 @@ function DataApplications() {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
+      viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl text-center'>
         Data Applications
       </h3>
 
@@ -134,12 +135,12 @@ function DataApplications() {
         {/* Hero Section */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ 
             duration: 0.8,
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
-          viewport={{ once: true, margin: "-20px" }}
           className='text-center mb-16'
         >
           <h4 className='text-4xl font-bold text-[#F7AB0A] mb-6'>
@@ -178,13 +179,13 @@ function DataApplications() {
             <motion.div
               key={index}
               initial={{ y: 30, opacity: 0, scale: 0.95 }}
-              whileInView={{ y: 0, opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1, scale: 1 }}
               transition={{ 
                 duration: 0.8, 
                 delay: index * 0.15,
                 ease: [0.25, 0.46, 0.45, 0.94]
               }}
-              viewport={{ once: true, margin: "-50px" }}
               className='bg-[#292929] rounded-lg p-6 hover:bg-[#333333] transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-[#F7AB0A]/10'
             >
               <div className='text-center mb-6'>
@@ -238,12 +239,12 @@ function DataApplications() {
         {/* Integration Ecosystem */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ 
             duration: 0.8,
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
-          viewport={{ once: true, margin: "-20px" }}
           className='mb-16'
         >
           <h4 className='text-3xl font-bold text-white mb-8 text-center'>
@@ -255,13 +256,13 @@ function DataApplications() {
               <motion.div 
                 key={index}
                 initial={{ y: 40, opacity: 0, scale: 0.98 }}
-                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1, scale: 1 }}
                 transition={{ 
                   duration: 0.7, 
                   delay: index * 0.1,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                viewport={{ once: true, margin: "-30px" }}
                 className='bg-gradient-to-br from-purple-500/20 to-blue-500/20 rounded-lg p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10'
               >
                 <div className='text-center mb-4'>
@@ -298,7 +299,8 @@ function DataApplications() {
         {/* Revenue Potential */}
         <motion.div
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='bg-gradient-to-r from-[#F7AB0A]/20 to-yellow-600/20 rounded-lg p-8 text-center'
         >

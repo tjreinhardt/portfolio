@@ -78,9 +78,10 @@ ${formData.name}`;
     <div className='min-h-screen relative flex flex-col text-left max-w-7xl mx-auto items-center py-20 px-6'>
       <motion.h3 
         initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'
+        className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'
       >
         Get In Touch
       </motion.h3>
@@ -90,9 +91,9 @@ ${formData.name}`;
         {/* Hero Section */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: true, margin: "-20px" }}
           className='text-center mb-16'
         >
           <h4 className='text-3xl md:text-5xl font-bold text-white mb-6'>
@@ -110,7 +111,8 @@ ${formData.name}`;
               <motion.div
                 key={index}
                 initial={{ scale: 0.8, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ scale: 1, opacity: 1 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className='text-center'
               >
@@ -124,9 +126,9 @@ ${formData.name}`;
         {/* Inquiry Types */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: true, margin: "-20px" }}
           className='mb-16'
         >
           <h5 className='text-2xl font-bold text-white mb-8 text-center'>
@@ -138,13 +140,13 @@ ${formData.name}`;
               <motion.div
                 key={index}
                 initial={{ y: 30, opacity: 0, scale: 0.95 }}
-                whileInView={{ y: 0, opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1, scale: 1 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: index * 0.1,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                viewport={{ once: true, margin: "-50px" }}
                 onClick={() => setSelectedInquiry(inquiry.type)}
                 className={`bg-[#292929] rounded-lg p-6 cursor-pointer transition-all duration-300 hover:scale-105 border-2 ${
                   selectedInquiry === inquiry.type 
@@ -166,9 +168,9 @@ ${formData.name}`;
         {/* Contact Form */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: true, margin: "-20px" }}
           className='bg-gradient-to-br from-[#292929] to-[#1f1f1f] rounded-lg p-8 shadow-2xl'
         >
           <div className='flex flex-col lg:flex-row gap-12'>
@@ -308,9 +310,9 @@ ${formData.name}`;
         {/* Final CTA */}
         <motion.div
           initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          viewport={{ once: true, margin: "-20px" }}
           className='mt-16 text-center bg-gradient-to-r from-[#F7AB0A]/10 to-green-500/10 rounded-lg p-8'
         >
           <h5 className='text-2xl font-bold text-white mb-4'>

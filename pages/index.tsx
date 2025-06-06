@@ -26,19 +26,20 @@ type Props = {
   businessModel: any;
   launchInfo: any;
   socials: any[];
+  onLogout?: () => void;
 }
 
-const Home = ({ companyInfo, aiServices, customers, businessModel, launchInfo, socials }: Props) => {
+const Home = ({ companyInfo, aiServices, customers, businessModel, launchInfo, socials, onLogout }: Props) => {
   return (
     <div className='bg-[rgb(36,36,36)] text-white min-h-screen
-    overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80'>
+    overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 pt-16 md:pt-20'>
       <Head>
         <title>{companyInfo?.name ? `${companyInfo.name} - ${companyInfo.tagline}` : 'Food Industry AI'}</title>
         <meta name="description" content={companyInfo?.aboutCompany || "Revolutionizing food industry intelligence through comprehensive data solutions"} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <Header socials={socials} />
+      <Header socials={socials} onLogout={onLogout} />
 
       <section id="hero">
         <CompanyHero companyInfo={companyInfo} />

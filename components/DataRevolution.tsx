@@ -105,11 +105,12 @@ function DataRevolution() {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
+      viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'>
         Data Revolution
       </h3>
 
@@ -120,7 +121,8 @@ function DataRevolution() {
         {/* Hero Section */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='text-center mb-16'
         >
@@ -140,7 +142,8 @@ function DataRevolution() {
             <motion.div 
               key={index}
               initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className='bg-[#292929] rounded-lg p-6 hover:bg-[#333333] transition-colors'
             >
@@ -166,7 +169,8 @@ function DataRevolution() {
         {/* Use Cases Grid */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='mb-16'
         >
@@ -179,7 +183,8 @@ function DataRevolution() {
               <motion.div 
                 key={index}
                 initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className='bg-[#292929] rounded-lg p-6 border-l-4 border-[#F7AB0A] hover:border-l-8 transition-all'
               >
@@ -206,7 +211,8 @@ function DataRevolution() {
         {/* Vision Statement */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='bg-gradient-to-r from-[#F7AB0A]/20 to-[#F7AB0A]/10 rounded-lg p-8 text-center'
         >

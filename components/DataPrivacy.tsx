@@ -86,11 +86,12 @@ function DataPrivacy() {
   return (
     <motion.div 
       initial={{ opacity: 0 }}
+      viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
       className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 uppercase tracking-[20px] text-gray-500 text-2xl'>
+      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl text-center'>
         Data Privacy
       </h3>
 
@@ -101,7 +102,8 @@ function DataPrivacy() {
         {/* Hero Section */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='text-center mb-16'
         >
@@ -121,7 +123,8 @@ function DataPrivacy() {
             <motion.div 
               key={index}
               initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
               className='bg-[#292929] rounded-lg p-6 hover:bg-[#333333] transition-colors'
             >
@@ -147,7 +150,8 @@ function DataPrivacy() {
         {/* Pricing Tiers */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='mb-16'
         >
@@ -160,7 +164,8 @@ function DataPrivacy() {
               <motion.div 
                 key={index}
                 initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 className={`bg-[#292929] rounded-lg p-6 border-2 transition-all ${
                   index === 2 ? 'border-[#F7AB0A] transform scale-105' : 
@@ -195,7 +200,8 @@ function DataPrivacy() {
         {/* Value Proposition */}
         <motion.div 
           initial={{ y: 100, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true }}
+      whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
           className='bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 rounded-lg p-8'
         >
