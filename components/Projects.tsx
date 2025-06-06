@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Project } from "../typings"
-import { urlFor } from '../sanity';
+// import { urlFor } from '../sanity';
 
 type Props = {
   projects: Project[];
@@ -33,7 +33,7 @@ function Projects({ projects }: Props) {
               transition={{ duration: 1.2 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              src={urlFor(project?.image).url()}
+              src=""
               alt=''
               className='h-50 max-h-[145px] md:max-h-[170px] lg:max-h-[250px] w-auto mt-14'
             />
@@ -46,7 +46,7 @@ function Projects({ projects }: Props) {
 
               <div className='flex items-center md:space-x-2 justify-center'>
                 {project?.technologies.map(technology => (
-                  <img className="h-8 w-8 rounded-full object-cover" key={technology._id} src={urlFor(technology.image).url()} alt="" />
+                  <img className="h-8 w-8 rounded-full object-cover" key={technology._id} src="" alt="" />
                 ))}
               </div>
 

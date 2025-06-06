@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { Experience } from '../typings'
-import { urlFor } from '../sanity';
+// import { urlFor } from '../sanity';
 import { fetchExperiences } from '../utils/fetchExperiences';
 
 type Props = {
@@ -20,7 +20,7 @@ function ExperienceCard({ experience }: Props) {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className='w-32 h-32 min-h-32 rounded-full md:rounded-full xl:w-[100px] xl:h-[100px] object-cover object-center'
-        src={urlFor(experience?.companyImage).url()}
+        src=""
         alt=""
       />
 
@@ -33,7 +33,7 @@ function ExperienceCard({ experience }: Props) {
             <img
               key={technology._id}
               className="h-10 w-10 rounded-full my-1"
-              src={urlFor(technology.image).url()}
+              src=""
             />
           ))}
         </div>
