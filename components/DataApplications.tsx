@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer, optimizedViewport, hoverLift, fadeIn } from '../utils/animations'
+import { staggerContainer, optimizedViewport, hoverLift, fadeIn } from '../utils/animations'
 
 function DataApplications() {
   const dataApplications = [

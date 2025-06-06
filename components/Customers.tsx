@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
+import { fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Props = {
   customers: any[]
@@ -109,7 +109,7 @@ function Customers({ customers }: Props) {
 
   return (
     <motion.div 
-      variants={fadeInUp}
+      variants={fadeIn}
       initial="initial"
       whileInView="animate"
       viewport={optimizedViewport}
@@ -280,7 +280,7 @@ function Customers({ customers }: Props) {
 
         {/* Call to Action */}
         <motion.div 
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}

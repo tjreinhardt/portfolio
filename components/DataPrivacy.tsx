@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
+import { fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Props = {}
 
@@ -275,7 +275,7 @@ function DataPrivacy({}: Props) {
 
         {/* Pricing Tiers */}
         <motion.div 
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}

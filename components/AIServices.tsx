@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
+import { fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Props = {
   aiServices: any[]
@@ -152,7 +152,7 @@ function AIServices({ aiServices }: Props) {
             {aiCapabilities.map((capability, index) => (
               <motion.div 
                 key={index} 
-                variants={fadeInUp}
+                variants={fadeIn}
                 {...hoverLift}
                 className="bg-[#292929] rounded-xl p-6 md:p-8 text-center border border-gray-700 hover:border-[#F7AB0A]/50 transition-all duration-300"
               >
@@ -173,7 +173,7 @@ function AIServices({ aiServices }: Props) {
 
         {/* Industry Problems We Solve */}
         <motion.div
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
@@ -190,7 +190,7 @@ function AIServices({ aiServices }: Props) {
             {industryProblems.map((item, index) => (
               <motion.div 
                 key={index} 
-                variants={fadeInUp}
+                variants={fadeIn}
                 {...hoverLift}
                 className="bg-[#292929] rounded-xl p-6 md:p-8 border border-gray-700 hover:border-[#F7AB0A]/30 transition-all duration-300"
               >
@@ -205,7 +205,7 @@ function AIServices({ aiServices }: Props) {
 
         {/* Core AI Services */}
         <motion.div
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
@@ -216,7 +216,7 @@ function AIServices({ aiServices }: Props) {
             {coreServices.map((service, index) => (
               <motion.div
                 key={index}
-                variants={fadeInUp}
+                variants={fadeIn}
                 initial="initial"
                 whileInView="animate"
                 viewport={optimizedViewport}
@@ -260,7 +260,7 @@ function AIServices({ aiServices }: Props) {
 
         {/* Technology Stack */}
         <motion.div 
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
@@ -295,7 +295,7 @@ function AIServices({ aiServices }: Props) {
 
         {/* Call to Action */}
         <motion.div 
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}

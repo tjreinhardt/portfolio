@@ -1,7 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { BusinessModel } from '../typings'
-import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
+import { fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Props = {
   businessModel: BusinessModel
@@ -138,7 +138,7 @@ function Business({ businessModel }: Props) {
 
         {/* Valuation Metrics */}
         <motion.div
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
@@ -169,7 +169,7 @@ function Business({ businessModel }: Props) {
 
         {/* Acquisition Strategy Timeline */}
         <motion.div
-          variants={fadeInUp}
+          variants={fadeIn}
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
