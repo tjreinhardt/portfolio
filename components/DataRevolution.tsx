@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import { fadeIn, staggerContainer, optimizedViewport } from '../utils/animations'
 
 function DataRevolution() {
   const dataFeatures = [
@@ -141,7 +142,7 @@ function DataRevolution() {
           {dataFeatures.map((feature, index) => (
             <motion.div 
               key={index}
-              initial={{ scale: 0, opacity: 0 }}
+              initial={{ scale: .9, opacity: 0 }}
       viewport={{ once: true }}
       whileInView={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -182,10 +183,10 @@ function DataRevolution() {
             {useCases.map((useCase, index) => (
               <motion.div 
                 key={index}
-                initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
                 className='bg-[#292929] rounded-lg p-6 border-l-4 border-[#F7AB0A] hover:border-l-8 transition-all'
               >
                 <div className='flex items-center mb-4'>
@@ -210,7 +211,7 @@ function DataRevolution() {
 
         {/* Vision Statement */}
         <motion.div 
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ opacity: 0 }}
       viewport={{ once: true }}
       whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}

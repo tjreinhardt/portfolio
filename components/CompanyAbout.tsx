@@ -32,11 +32,11 @@ function CompanyAbout({ companyInfo }: Props) {
         className='mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]'
       >
         <Image 
-          src={companyInfo?.logo || '/logo-placeholder.svg'}
-          alt='Company Logo'
+          src='/logos/breme-logo-concept-1.svg'
+          alt='Breme AI Logo'
           width={500}
           height={600}
-          className='rounded-lg object-cover'
+          className='rounded-lg object-contain bg-black/20 p-8'
         />
       </motion.div>
 

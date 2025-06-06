@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 type Props = {
   onLogin: (username: string, password: string) => boolean;
@@ -40,14 +41,20 @@ const Login = ({ onLogin }: Props) => {
       >
         {/* Logo/Header */}
         <div className="text-center mb-8">
-          <motion.h1 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold text-white mb-4"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="relative w-48 h-24 mx-auto mb-6"
           >
-            <span className="text-[#F7AB0A]">Breme</span> AI
-          </motion.h1>
+            <Image 
+              src='/breme-logo.png'
+              alt='Breme AI Logo'
+              fill
+              className='object-contain'
+              priority
+            />
+          </motion.div>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

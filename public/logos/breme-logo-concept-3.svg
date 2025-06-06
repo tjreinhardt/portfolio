@@ -1,0 +1,19 @@
+<svg width="160" height="40" viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+  <!-- Modern "B" icon -->
+  <g transform="translate(5, 8)">
+    <!-- Outer B shape -->
+    <path d="M0 0 L15 0 Q20 0 20 5 Q20 10 17 12 Q22 14 22 19 Q22 24 15 24 L0 24 Z M3 3 L3 10 L15 10 Q17 10 17 6.5 Q17 3 15 3 Z M3 13 L3 21 L15 21 Q19 21 19 17 Q19 13 15 13 Z" 
+          fill="#F7AB0A"/>
+    
+    <!-- Tech accent lines -->
+    <line x1="25" y1="6" x2="30" y2="6" stroke="#22c55e" stroke-width="2"/>
+    <line x1="25" y1="12" x2="32" y2="12" stroke="#F7AB0A" stroke-width="2"/>
+    <line x1="25" y1="18" x2="28" y2="18" stroke="#22c55e" stroke-width="2"/>
+  </g>
+  
+  <!-- BREME text -->
+  <text x="45" y="16" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white">BREME</text>
+  
+  <!-- Subtitle -->
+  <text x="45" y="28" font-family="Arial, sans-serif" font-size="7" fill="#F7AB0A" letter-spacing="1.5px">AI • FOOD • DATA</text>
+</svg> 

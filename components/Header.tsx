@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { SocialIcon } from 'react-social-icons'
 import { motion, AnimatePresence } from "framer-motion"
 import Link from 'next/link'
+import Image from 'next/image'
 import { Social } from "../typings"
 
 type Props = {
@@ -116,33 +117,63 @@ function Header({ socials, onLogout }: Props) {
         }`}
       >
         <div className='w-full max-w-7xl mx-auto flex items-center justify-between'>
-          {/* Social Icons */}
-          <motion.div
-            initial={{
-              x: -100,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-            }}
-            transition={{
-              duration: 0.8,
-            }}
-            className='flex flex-row items-center'
-          >
-            <div className='flex space-x-1'>
-              {socials.slice(0, 3).map((social) => (
-                <SocialIcon
-                  key={social._id}
-                  url={social.url}
-                  fgColor="gray"
-                  bgColor="transparent"
-                  className="!h-7 !w-7 md:!h-8 md:!w-8 hover:opacity-75 transition-opacity"
-                />
-              ))}
-            </div>
-          </motion.div>
+          {/* Left side: Social Icons + Logo */}
+          <div className='flex items-center space-x-4'>
+            <motion.div
+              initial={{
+                x: -100,
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.8,
+              }}
+              className='flex flex-row items-center'
+            >
+              <div className='flex space-x-1'>
+                {socials.slice(0, 3).map((social) => (
+                  <SocialIcon
+                    key={social._id}
+                    url={social.url}
+                    fgColor="gray"
+                    bgColor="transparent"
+                    className="!h-7 !w-7 md:!h-8 md:!w-8 hover:opacity-75 transition-opacity"
+                  />
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Breme Logo */}
+            <motion.div
+              initial={{
+                x: -50,
+                opacity: 0,
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.1
+              }}
+              className='hidden md:block'
+            >
+              <Link href="#hero">
+                <div className='relative w-16 h-8 cursor-pointer hover:opacity-80 transition-opacity'>
+                  <Image 
+                    src='/breme-logo.png'
+                    alt='Breme AI'
+                    fill
+                    className='object-contain'
+                  />
+                </div>
+              </Link>
+            </motion.div>
+          </div>
 
           {/* Desktop Navigation Menu */}
           <motion.nav

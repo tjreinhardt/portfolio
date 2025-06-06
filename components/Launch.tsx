@@ -60,7 +60,7 @@ function Launch({ launchInfo }: Props) {
         
         {/* Current Stage Hero */}
         <motion.div 
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ opacity: 0 }}
       viewport={{ once: true }}
       whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}
@@ -221,7 +221,7 @@ function Launch({ launchInfo }: Props) {
 
         {/* Risk Assessment */}
         <motion.div 
-          initial={{ y: 100, opacity: 0 }}
+          initial={{ opacity: 0 }}
       viewport={{ once: true }}
       whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8 }}

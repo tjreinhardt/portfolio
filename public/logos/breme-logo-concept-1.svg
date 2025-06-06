@@ -1,0 +1,25 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle for contrast -->
+  <circle cx="30" cy="30" r="25" fill="#1a1a1a" stroke="#F7AB0A" stroke-width="2"/>
+  
+  <!-- Central node (representing POS/data hub) -->
+  <circle cx="30" cy="30" r="4" fill="#F7AB0A"/>
+  
+  <!-- Data connection lines -->
+  <path d="M30 30 L20 20 M30 30 L40 20 M30 30 L20 40 M30 30 L40 40 M30 30 L15 30 M30 30 L45 30" 
+        stroke="#F7AB0A" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Data nodes -->
+  <circle cx="20" cy="20" r="2.5" fill="#22c55e"/>
+  <circle cx="40" cy="20" r="2.5" fill="#22c55e"/>
+  <circle cx="20" cy="40" r="2.5" fill="#22c55e"/>
+  <circle cx="40" cy="40" r="2.5" fill="#22c55e"/>
+  <circle cx="15" cy="30" r="2.5" fill="#22c55e"/>
+  <circle cx="45" cy="30" r="2.5" fill="#22c55e"/>
+  
+  <!-- BREME text -->
+  <text x="70" y="25" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">BREME</text>
+  
+  <!-- AI subtitle -->
+  <text x="70" y="42" font-family="Arial, sans-serif" font-size="10" fill="#F7AB0A" letter-spacing="2px">FOOD INTELLIGENCE</text>
+</svg> 

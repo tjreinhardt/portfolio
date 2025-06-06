@@ -104,8 +104,8 @@ function CompanyHero({ companyInfo }: Props) {
         >
           <div className='relative w-24 h-24 mx-auto mb-6'>
             <Image 
-              className='rounded-full object-cover ring-4 ring-[#F7AB0A]/30'
-              src={companyInfo?.logo || '/logo.svg'}
+              className='object-contain'
+              src='/logos/breme-logo-concept-1.svg'
               alt='Breme AI Logo'
               fill
               priority

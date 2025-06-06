@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { useForm, SubmitHandler } from "react-hook-form"
-import { fadeInUp, fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
+import { fadeIn, staggerContainer, optimizedViewport, hoverLift } from '../utils/animations'
 
 type Inputs = {
   name: string,
@@ -140,9 +140,9 @@ ${formData.name}`;
             {inquiryTypes.map((inquiry, index) => (
               <motion.div
                 key={index}
-                initial={{ y: 30, opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0 }}
       viewport={{ once: true }}
-      whileInView={{ y: 0, opacity: 1, scale: 1 }}
+      whileInView={{ y: 0, opacity: 1 }}
                 transition={{ 
                   duration: 0.6, 
                   delay: index * 0.1,
