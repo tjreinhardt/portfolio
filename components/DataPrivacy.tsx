@@ -92,11 +92,11 @@ function DataPrivacy({}: Props) {
       initial="initial"
       whileInView="animate"
       viewport={optimizedViewport}
-      className='min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-4 md:px-10 justify-center mx-auto items-center py-20'
+      className='min-h-[80vh] md:min-h-screen relative flex overflow-hidden flex-col text-left max-w-full px-4 md:px-10 justify-center mx-auto items-center py-20'
     >
-      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[8px] md:tracking-[12px] lg:tracking-[20px] text-gray-500 text-sm md:text-lg lg:text-2xl text-center'>
-        Data Privacy
-      </h3>
+              <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[8px] md:tracking-[12px] lg:tracking-[20px] text-gray-500 text-sm md:text-lg lg:text-2xl text-center'>
+          Privacy & Security
+        </h3>
 
       <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
 

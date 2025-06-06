@@ -70,7 +70,7 @@ function Business({ businessModel }: Props) {
   ];
 
   return (
-    <div className="min-h-screen relative bg-[rgb(36,36,36)] py-20 px-4">
+    <div className="min-h-[80vh] md:min-h-screen relative bg-[rgb(36,36,36)] py-20 px-4">
       {/* Background Effects */}
       <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
       
@@ -84,7 +84,7 @@ function Business({ businessModel }: Props) {
         {/* Header */}
         <div className="text-center mb-16">
           <h3 className="uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl mb-8 text-center">
-            Business Strategy
+            Business Model
           </h3>
           <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
             The <span className="text-[#F7AB0A]">$1 Billion</span> Opportunity

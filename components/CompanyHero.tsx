@@ -24,8 +24,8 @@ function CompanyHero({ companyInfo }: Props) {
   const stats = [
     { value: "$9.4T", label: "Food Industry TAM" },
     { value: "$1B+", label: "Target Valuation" },
-    { value: "100+", label: "POS Acquisitions" },
-    { value: "50M+", label: "Future Customers" }
+    { value: "2000+", label: "POS Acquisitions" },
+    { value: "300M+", label: "Future Customers" }
   ];
 
   const ctaButtons = [
@@ -35,7 +35,7 @@ function CompanyHero({ companyInfo }: Props) {
   ];
 
   return (
-    <div className='min-h-screen relative flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-[rgb(36,36,36)] to-[rgb(25,25,25)]'>
+    <div className='min-h-[80vh] md:min-h-screen relative flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-[rgb(36,36,36)] to-[rgb(25,25,25)]'>
       
       {/* Animated Background Elements */}
       <div className='absolute inset-0 overflow-hidden'>

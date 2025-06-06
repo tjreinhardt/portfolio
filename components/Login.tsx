@@ -29,7 +29,7 @@ const Login = ({ onLogin }: Props) => {
   };
 
   return (
-    <div className="min-h-screen bg-[rgb(36,36,36)] flex items-center justify-center px-4">
+    <div className="min-h-[80vh] md:min-h-screen bg-[rgb(36,36,36)] flex items-center justify-center px-4">
       {/* Background Effects */}
       <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
       

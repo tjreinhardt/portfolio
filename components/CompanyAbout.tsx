@@ -13,78 +13,148 @@ function CompanyAbout({ companyInfo }: Props) {
       viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='min-h-screen flex flex-col relative text-center md:text-left md:flex-row max-w-7xl px-6 md:px-10 justify-evenly mx-auto items-center py-20'
+      className='min-h-[80vh] md:min-h-screen relative bg-[rgb(36,36,36)] py-20'
     >
+      {/* Background Effects */}
+      <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
+      
       <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'>
         About
       </h3>
 
-      <motion.div
-        initial={{
-          x: -200,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 1.2,
-        }}
-      viewport={{ once: true }}
-      whileInView={{ opacity: 1, x: 0 }}
-        className='mb-20 md:mb-0 flex-shrink-0 w-56 h-56 rounded-full object-cover md:rounded-lg md:w-64 md:h-95 xl:w-[500px] xl:h-[600px]'
-      >
-        <Image 
-          src='/logos/breme-logo-concept-1.svg'
-          alt='Breme AI Logo'
-          width={500}
-          height={600}
-          className='rounded-lg object-contain bg-black/20 p-8'
-        />
-      </motion.div>
-
-      <div className='space-y-10 px-0 md:px-10'>
-        <h4 className='text-4xl font-semibold'>
-          <span className='text-[#F7AB0A]/90'>{companyInfo?.name}</span> - Transforming Food Industry Intelligence
-        </h4>
+      <div className='max-w-7xl mx-auto px-6 md:px-10 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-20'>
         
-        <div className='space-y-5 text-base'>
-          <p>{companyInfo?.aboutCompany}</p>
-          
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
-            <div>
-              <h5 className='text-xl font-semibold text-[#F7AB0A] mb-3'>Our Mission</h5>
-              <p className='text-sm text-gray-300'>{companyInfo?.mission}</p>
+        {/* Logo Section - Enhanced */}
+        <motion.div
+          initial={{ x: -200, opacity: 0 }}
+          viewport={{ once: true }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2 }}
+          className='flex-shrink-0 relative'
+        >
+          {/* Logo Container with Glow Effect */}
+          <div className='relative w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] flex items-center justify-center'>
+            {/* Animated Background Circle */}
+            <motion.div
+              animate={{ 
+                rotate: 360,
+                scale: [1, 1.05, 1]
+              }}
+              transition={{ 
+                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+              }}
+              className='absolute inset-0 rounded-full border border-[#F7AB0A]/20 bg-gradient-to-r from-[#F7AB0A]/5 to-green-500/5'
+            />
+            
+            {/* Logo with Enhanced Styling */}
+            <div className='relative z-10 w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-[#1a1a1a] rounded-2xl p-8 border border-[#F7AB0A]/30 shadow-2xl shadow-[#F7AB0A]/10'>
+              <Image 
+                src='/logos/icon.png'
+                alt='Breme AI Logo'
+                width={400}
+                height={400}
+                className='w-full h-full object-contain drop-shadow-lg'
+              />
             </div>
             
-            <div>
-              <h5 className='text-xl font-semibold text-[#F7AB0A] mb-3'>Our Vision</h5>
-              <p className='text-sm text-gray-300'>{companyInfo?.vision}</p>
-            </div>
+            {/* Decorative Data Points */}
+            <div className='absolute -top-4 -right-4 w-8 h-8 bg-[#F7AB0A] rounded-full animate-pulse' />
+            <div className='absolute -bottom-4 -left-4 w-6 h-6 bg-green-500 rounded-full animate-pulse delay-1000' />
+            <div className='absolute top-1/2 -left-8 w-4 h-4 bg-blue-400 rounded-full animate-pulse delay-500' />
+          </div>
+        </motion.div>
+
+        {/* Content Section - Enhanced */}
+        <motion.div
+          initial={{ x: 200, opacity: 0 }}
+          viewport={{ once: true }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className='flex-1 space-y-8 text-center lg:text-left max-w-2xl'
+        >
+          {/* Main Heading */}
+          <div>
+            <h4 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight'>
+              <span className='text-[#F7AB0A]'>{companyInfo?.name}</span>
+              <br />
+              <span className='text-white'>Transforming Food Industry Intelligence</span>
+            </h4>
+            <p className='text-lg md:text-xl text-gray-200 leading-relaxed font-light'>{companyInfo?.aboutCompany}</p>
           </div>
           
+          {/* Mission & Vision - Side by Side Cards */}
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -2 }}
+              className='bg-gradient-to-br from-[#292929] to-[#1f1f1f] rounded-xl p-6 border border-[#F7AB0A]/20 hover:border-[#F7AB0A]/40 transition-all duration-300 hover:shadow-lg hover:shadow-[#F7AB0A]/5'
+            >
+              <div className='text-3xl mb-3'>🎯</div>
+              <h5 className='text-xl font-semibold text-[#F7AB0A] mb-3'>Our Mission</h5>
+              <p className='text-sm text-gray-200 leading-relaxed'>{companyInfo?.mission}</p>
+            </motion.div>
+            
+            <motion.div 
+              whileHover={{ scale: 1.02, y: -2 }}
+              className='bg-gradient-to-br from-[#292929] to-[#1f1f1f] rounded-xl p-6 border border-green-500/20 hover:border-green-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/5'
+            >
+              <div className='text-3xl mb-3'>🚀</div>
+              <h5 className='text-xl font-semibold text-green-400 mb-3'>Our Vision</h5>
+              <p className='text-sm text-gray-200 leading-relaxed'>{companyInfo?.vision}</p>
+            </motion.div>
+          </div>
+          
+          {/* Core Values - Enhanced Grid */}
           {companyInfo?.values && companyInfo.values.length > 0 && (
             <div>
-              <h5 className='text-xl font-semibold text-[#F7AB0A] mb-3'>Core Values</h5>
-              <div className='grid grid-cols-2 md:grid-cols-3 gap-2'>
+              <h5 className='text-2xl font-semibold text-white mb-6 flex items-center justify-center lg:justify-start'>
+                <span className='text-2xl mr-3'>💎</span>
+                Core Values
+              </h5>
+              <div className='grid grid-cols-2 lg:grid-cols-3 gap-3'>
                 {companyInfo.values.map((value: string, index: number) => (
-                  <div key={index} className='bg-[#292929] rounded-lg p-3 text-center'>
-                    <span className='text-sm text-gray-300'>{value}</span>
-                  </div>
+                  <motion.div 
+                    key={index} 
+                    initial={{ scale: 0.9, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -1 }}
+                    className='bg-[#292929] hover:bg-[#333333] rounded-lg p-3 text-center border border-gray-600 hover:border-[#F7AB0A]/30 transition-all duration-300 hover:shadow-md'
+                  >
+                    <span className='text-sm font-medium text-gray-200'>{value}</span>
+                  </motion.div>
                 ))}
               </div>
             </div>
           )}
           
-          <div className='flex flex-col md:flex-row gap-4 text-sm text-gray-400'>
-            <div>
-              <span className='font-semibold text-[#F7AB0A]'>Founded:</span> {companyInfo?.founded}
-            </div>
-            <div>
-              <span className='font-semibold text-[#F7AB0A]'>Stage:</span> {companyInfo?.stage}
-            </div>
-            <div>
-              <span className='font-semibold text-[#F7AB0A]'>Headquarters:</span> {companyInfo?.headquarters}
+          {/* Company Details - Enhanced */}
+          <div className='bg-gradient-to-r from-[#F7AB0A]/10 to-green-500/10 rounded-xl p-6 border border-[#F7AB0A]/20'>
+            <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-center md:text-left'>
+              <div className='flex flex-col md:flex-row md:items-center'>
+                <span className='text-2xl mr-2 mb-1 md:mb-0'>📅</span>
+                <div>
+                  <div className='text-xs uppercase tracking-wider text-gray-400'>Founded</div>
+                  <div className='font-semibold text-[#F7AB0A]'>{companyInfo?.founded}</div>
+                </div>
+              </div>
+              <div className='flex flex-col md:flex-row md:items-center'>
+                <span className='text-2xl mr-2 mb-1 md:mb-0'>🌱</span>
+                <div>
+                  <div className='text-xs uppercase tracking-wider text-gray-400'>Stage</div>
+                  <div className='font-semibold text-green-400'>{companyInfo?.stage}</div>
+                </div>
+              </div>
+              <div className='flex flex-col md:flex-row md:items-center'>
+                <span className='text-2xl mr-2 mb-1 md:mb-0'>📍</span>
+                <div>
+                  <div className='text-xs uppercase tracking-wider text-gray-400'>Headquarters</div>
+                  <div className='font-semibold text-white'>{companyInfo?.headquarters}</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </motion.div>
   )

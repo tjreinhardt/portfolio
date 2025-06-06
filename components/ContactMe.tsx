@@ -15,30 +15,60 @@ type Props = {}
 
 function ContactMe({ }: Props) {
   const [selectedInquiry, setSelectedInquiry] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm<Inputs>();
 
-  const onSubmit: SubmitHandler<Inputs> = (formData) => {
-    const subject = `${formData.inquiryType} Inquiry - ${formData.company}`;
-    const body = `Hello Breme AI Team,
-
-My name is ${formData.name} from ${formData.company}.
-
-Inquiry Type: ${formData.inquiryType}
-
-Message:
-${formData.message}
-
-Contact: ${formData.email}
-
-Best regards,
-${formData.name}`;
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
     
-    window.location.href = `mailto:partnerships@breme.ai?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    try {
+      // FormSubmit - completely free, no signup required
+      const response = await fetch('https://formsubmit.co/info@bremenow.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          inquiry_type: formData.inquiryType,
+          message: formData.message,
+          _subject: `${formData.inquiryType} Inquiry - ${formData.company}`,
+          _template: 'table', // Nice HTML email formatting
+          _captcha: 'false' // Disable captcha for API usage
+        })
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        reset(); // Clear the form
+        setSelectedInquiry(''); // Clear selected inquiry
+        
+        // Auto-hide success message after 5 seconds
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        throw new Error('Form submission failed');
+      }
+      
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setSubmitStatus('error');
+      
+      // Auto-hide error message after 5 seconds  
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const inquiryTypes = [
@@ -76,7 +106,7 @@ ${formData.name}`;
   ];
 
   return (
-    <div className='min-h-screen relative flex flex-col text-left max-w-7xl mx-auto items-center py-20 px-6'>
+    <div className='min-h-[80vh] md:min-h-screen relative flex flex-col text-left max-w-7xl mx-auto items-center py-20 px-6'>
       <motion.h3 
         initial={{ opacity: 0 }}
       viewport={{ once: true }}
@@ -295,13 +325,40 @@ ${formData.name}`;
 
                 <button 
                   type="submit"
-                  className='w-full bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 py-4 px-8 rounded-lg text-black font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-lg'
+                  disabled={isSubmitting}
+                  className={`w-full py-4 px-8 rounded-lg font-bold text-lg transition-all duration-300 ${
+                    isSubmitting 
+                      ? 'bg-gray-500 cursor-not-allowed' 
+                      : 'bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 hover:scale-105 hover:shadow-lg'
+                  }`}
                 >
-                  Start the Conversation
+                  {isSubmitting ? (
+                    <div className="flex items-center justify-center">
+                      <div className="w-5 h-5 border-2 border-black/30 border-t-black rounded-full animate-spin mr-2"></div>
+                      Sending Message...
+                    </div>
+                  ) : (
+                    'Start the Conversation'
+                  )}
                 </button>
+
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="bg-green-500/20 border border-green-500/50 rounded-lg p-4 text-center">
+                    <div className="text-green-400 font-semibold mb-1">✅ Message Sent Successfully!</div>
+                    <p className="text-green-300 text-sm">We&apos;ll get back to you within 24 hours.</p>
+                  </div>
+                )}
+
+                {submitStatus === 'error' && (
+                  <div className="bg-red-500/20 border border-red-500/50 rounded-lg p-4 text-center">
+                    <div className="text-red-400 font-semibold mb-1">❌ Failed to Send Message</div>
+                    <p className="text-red-300 text-sm">Please try again or email us directly at info@bremenow.com</p>
+                  </div>
+                )}
                 
                 <p className='text-gray-400 text-xs text-center'>
-                  We typically respond within 24 hours for qualified inquiries
+                  {submitStatus === 'idle' && 'We typically respond within 24 hours for qualified inquiries'}
                 </p>
               </form>
             </div>
@@ -324,7 +381,7 @@ ${formData.name}`;
             from the world&apos;s largest source-level food dataset.
           </p>
           <div className='flex flex-wrap justify-center gap-4 text-sm text-gray-400'>
-            <span>📧 partnerships@breme.ai</span>
+            <span>📧 info@bremenow.com</span>
             <span>📞 Investor Hotline: Available upon request</span>
             <span>🌍 Reno • Remote</span>
           </div>

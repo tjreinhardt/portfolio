@@ -2,7 +2,7 @@ import React from 'react';
 
 const LogoTest = () => {
   return (
-    <div className="p-8 bg-[rgb(36,36,36)] min-h-screen">
+    <div className="p-8 bg-[rgb(36,36,36)] min-h-[80vh] md:min-h-screen">
       <h2 className="text-white text-2xl mb-8 text-center">Breme AI Logo Concepts</h2>
       
       <div className="space-y-8">

@@ -95,7 +95,7 @@ function AIServices({ aiServices }: Props) {
       ]
     },
     {
-      title: "Breme Protect",
+      title: "Breme Shield",
       description: "Comprehensive monitoring and alert system that prevents food-related health issues before they occur",
       icon: "🛡️",
       features: [
@@ -109,7 +109,7 @@ function AIServices({ aiServices }: Props) {
   ];
 
   return (
-    <div className="min-h-screen relative bg-[rgb(36,36,36)] py-20 px-4">
+    <div className="min-h-[80vh] md:min-h-screen relative bg-[rgb(36,36,36)] py-20 px-4">
       {/* Background Effects */}
       <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
       

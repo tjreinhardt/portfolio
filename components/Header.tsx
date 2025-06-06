@@ -20,13 +20,12 @@ function Header({ socials, onLogout }: Props) {
   const navigationItems = [
     { href: "#hero", label: "Home" },
     { href: "#about", label: "About" },
-    { href: "#data", label: "Data Revolution" },
     { href: "#ai-services", label: "AI Services" },
-    { href: "#customers", label: "Customer Benefits" },
+    { href: "#business", label: "Business Model" },
     { href: "#data-applications", label: "Data Applications" },
-    { href: "#business", label: "Business" },
-    { href: "#privacy", label: "Data Privacy" },
-    { href: "#launch", label: "Launch" },
+    { href: "#customers", label: "Customer Benefits" },
+    { href: "#privacy", label: "Privacy & Security" },
+    { href: "#launch", label: "Timeline" },
     { href: "#contact", label: "Contact" }
   ];
 
@@ -189,13 +188,13 @@ function Header({ socials, onLogout }: Props) {
               duration: 0.8,
               delay: 0.2
             }}
-            className='hidden lg:flex flex-row items-center space-x-4 xl:space-x-6 text-gray-300 text-xs xl:text-sm uppercase tracking-wider'
+            className='hidden lg:flex flex-row items-center space-x-2 xl:space-x-3 text-gray-300 text-xs uppercase tracking-wide'
           >
             {navigationItems.slice(0, -1).map((item) => (
               <Link 
                 key={item.href}
                 href={item.href} 
-                className='hover:text-[#F7AB0A] transition-all duration-200 cursor-pointer px-2 py-1 rounded hover:bg-[#F7AB0A]/10 whitespace-nowrap'
+                className='hover:text-[#F7AB0A] transition-all duration-200 cursor-pointer px-2 py-1.5 rounded hover:bg-[#F7AB0A]/10 whitespace-nowrap text-center'
                 onClick={closeMenu}
               >
                 {item.label}
@@ -204,7 +203,7 @@ function Header({ socials, onLogout }: Props) {
             {onLogout && (
               <button
                 onClick={onLogout}
-                className='bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black px-3 py-1.5 rounded-md text-xs xl:text-sm font-semibold transition-all duration-200 whitespace-nowrap'
+                className='bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 whitespace-nowrap ml-2'
               >
                 Logout
               </button>

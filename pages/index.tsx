@@ -31,7 +31,7 @@ type Props = {
 
 const Home = ({ companyInfo, aiServices, customers, businessModel, launchInfo, socials, onLogout }: Props) => {
   return (
-    <div className='bg-[rgb(36,36,36)] text-white min-h-screen
+    <div className='bg-[rgb(36,36,36)] text-white min-h-[100vh]
     overflow-y-scroll overflow-x-hidden z-0 scrollbar scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80 pt-16 md:pt-20'>
       <Head>
         <title>{companyInfo?.name ? `${companyInfo.name} - ${companyInfo.tagline}` : 'Food Industry AI'}</title>
