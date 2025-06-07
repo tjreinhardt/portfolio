@@ -91,7 +91,7 @@ function DataPrivacy({}: Props) {
       variants={fadeIn}
       initial="initial"
       whileInView="animate"
-      viewport={optimizedViewport}
+      viewport={{ once: true, amount: 0 }}
       className='min-h-0 relative max-w-full px-4 md:px-10 mx-auto py-12 md:py-20'
     >
               <h3 className='absolute top-6 md:top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[6px] md:tracking-[12px] lg:tracking-[20px] text-gray-500 text-sm md:text-lg lg:text-2xl text-center'>

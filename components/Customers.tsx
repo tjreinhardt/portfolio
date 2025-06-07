@@ -112,7 +112,7 @@ function Customers({ customers }: Props) {
       variants={fadeIn}
       initial="initial"
       whileInView="animate"
-      viewport={optimizedViewport}
+      viewport={{ once: true, amount: 0 }}
       className='min-h-0 relative max-w-full px-4 md:px-10 mx-auto py-12 md:py-20'
     >
       <h3 className='absolute top-6 md:top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[6px] md:tracking-[12px] lg:tracking-[20px] text-gray-500 text-sm md:text-lg lg:text-2xl text-center'>
@@ -128,7 +128,7 @@ function Customers({ customers }: Props) {
           variants={fadeIn}
           initial="initial"
           whileInView="animate"
-          viewport={optimizedViewport}
+          viewport={{ once: true, amount: 0 }}
           className='text-center mb-16'
         >
           <h4 className='text-3xl md:text-4xl font-bold text-[#F7AB0A] mb-6'>
@@ -171,7 +171,7 @@ function Customers({ customers }: Props) {
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
-          viewport={optimizedViewport}
+          viewport={{ once: true, amount: 0 }}
           className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 mb-16'
         >
           {customerBenefits.map((benefit, index) => (
@@ -226,7 +226,7 @@ function Customers({ customers }: Props) {
           variants={hoverLift}
           initial="initial"
           whileInView="animate"
-          viewport={optimizedViewport}
+          viewport={{ once: true, amount: 0 }}
           className='bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-lg p-6 md:p-8 mb-16 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300'
         >
           <div className='text-center mb-8'>
@@ -283,7 +283,7 @@ function Customers({ customers }: Props) {
           variants={fadeIn}
           initial="initial"
           whileInView="animate"
-          viewport={optimizedViewport}
+          viewport={{ once: true, amount: 0 }}
           className='text-center bg-gradient-to-r from-[#F7AB0A]/20 to-yellow-600/20 rounded-lg p-6 md:p-8 transition-all duration-300'
         >
           <h4 className='text-xl md:text-2xl font-bold text-[#F7AB0A] mb-4'>
