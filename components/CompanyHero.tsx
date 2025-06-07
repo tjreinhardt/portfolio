@@ -1,202 +1,583 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import Link from 'next/link'
 import Image from 'next/image'
+
+// Enhanced animation variants for consistent fluidity
+const smoothTransition = {
+  duration: 0.8,
+  ease: [0.25, 0.46, 0.45, 0.94] // Consistent smooth easing
+}
+
+const staggerContainer = {
+  initial: {},
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+}
+
+const fadeInUp = {
+  initial: { 
+    opacity: 0, 
+    y: 30,
+    scale: 0.95
+  },
+  animate: { 
+    opacity: 1, 
+    y: 0,
+    scale: 1,
+    transition: smoothTransition
+  }
+}
+
+const fadeInScale = {
+  initial: { 
+    opacity: 0, 
+    scale: 0.8
+  },
+  animate: { 
+    opacity: 1, 
+    scale: 1,
+    transition: smoothTransition
+  }
+}
+
+// Enhanced Typewriter with Dynamic Highlighting
+const TypewriterWithHighlights = ({ text }: { text: string }) => {
+  const highlightPatterns = [
+    // Left sections: Yellow/Gold with glow + scale (no underline)
+    { pattern: /Hungry\s+for\s+\$9\.4T/gi, color: '#F7AB0A', glow: true, scale: true },
+    { pattern: /Serving\s+AI/gi, color: '#F7AB0A', glow: true, scale: true },
+    { pattern: /2000\+\s+Restaurants/gi, color: '#F7AB0A', glow: true, scale: true },
+    { pattern: /Building\s+Tomorrow's/gi, color: '#F7AB0A', glow: true, scale: true },
+    { pattern: /Secret\s+Sauce/gi, color: '#F7AB0A', glow: true, scale: true },
+    
+    // Right sections: Green with glow + underline (always underlined)
+    { pattern: /Side\s+of\s+Insights/gi, color: '#10B981', glow: true, underline: true },
+    { pattern: /Data/gi, color: '#10B981', glow: true, underline: true },
+    { pattern: /Infinite\s+Intelligence/gi, color: '#10B981', glow: true, underline: true },
+    { pattern: /Food\s+Empire/gi, color: '#10B981', glow: true, underline: true }
+  ]
+
+  const renderHighlightedText = (inputText: string) => {
+    let parts = [{ text: inputText, highlight: null }]
+    
+    highlightPatterns.forEach((pattern) => {
+      const newParts: any[] = []
+      parts.forEach((part) => {
+        if (part.highlight) {
+          newParts.push(part)
+        } else {
+          const matches = part.text.split(pattern.pattern)
+          const matchResults = part.text.match(pattern.pattern) || []
+          
+          matches.forEach((match, index) => {
+            if (match) {
+              newParts.push({ text: match, highlight: null })
+            }
+            if (matchResults[index]) {
+              newParts.push({ 
+                text: matchResults[index], 
+                highlight: pattern
+              })
+            }
+          })
+        }
+      })
+      parts = newParts
+    })
+
+    return parts.map((part, index) => {
+      if (!part.highlight) {
+        return <span key={index}>{part.text}</span>
+      }
+
+      const { color, glow, underline, scale } = part.highlight
+      
+      return (
+        <motion.span
+          key={index}
+          initial={{ 
+            opacity: 0,
+            scale: 1
+          }}
+          animate={{ 
+            opacity: 1,
+            scale: scale ? [1, 1.03, 1] : 1 // Subtle smooth scale like "Serving AI"
+          }}
+          transition={{ 
+            duration: 0.6,
+            ease: "easeOut",
+            delay: 0.1,
+            scale: { duration: 0.4, ease: "easeOut" }
+          }}
+          className="relative font-bold"
+          style={{ 
+            color: color, // Keep color permanently applied via style
+            borderBottom: underline ? `2px solid ${color}` : 'none'
+          }}
+        >
+          {part.text}
+          {underline && (
+            <>
+              {/* Main underline */}
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ scaleX: 1, opacity: 1 }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: 0.2,
+                  ease: "easeOut"
+                }}
+                className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
+                style={{ backgroundColor: color }}
+              />
+              {/* Secondary subtle underline */}
+              <motion.div
+                initial={{ scaleX: 0, opacity: 0 }}
+                animate={{ 
+                  scaleX: 1, 
+                  opacity: 0.3
+                }}
+                transition={{ 
+                  duration: 1.0, 
+                  delay: 0.4,
+                  ease: "easeOut"
+                }}
+                className="absolute bottom-0 left-0 right-0 origin-left rounded-sm h-0.5"
+                style={{ 
+                  backgroundColor: color,
+                  opacity: 0.3
+                }}
+              />
+            </>
+          )}
+
+          {glow && (
+            <motion.span
+              className="absolute inset-0 pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              style={{ 
+                boxShadow: `0 0 6px ${color}25`
+              }}
+            />
+          )}
+        </motion.span>
+      )
+    })
+  }
+
+  return (
+    <div className="relative">
+      <span className="mr-3">
+        {renderHighlightedText(text)}
+      </span>
+      <Cursor cursorColor='#F7AB0A' />
+      
+      {/* Extra visual flourishes for key messages */}
+      
+      {text.includes('Data Moat') && (
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8B5CF6] to-[#10B981] opacity-50"
+        />
+      )}
+    </div>
+  )
+}
 
 type Props = {
   companyInfo: any
 }
 
 function CompanyHero({ companyInfo }: Props) {
+  const [animationPhase, setAnimationPhase] = useState(0)
+  const controls = useAnimation()
+  
   const [text, count] = useTypewriter({
     words: [
-      "Central Nervous System of Food Industry",
-      "Strategic POS Acquisition + AI Intelligence", 
-      "Transforming $9.4T Food Market",
-      "Building the Future of Food Data"
+      "Hungry for $9.4T in Data",
+      "Serving AI with a Side of Insights", 
+      "2000+ Restaurants, Infinite Intelligence",
+      "Building Tomorrow's Food Empire",
+      "The Secret Sauce is Data"
     ],
     loop: true,
-    delaySpeed: 3000,
-    deleteSpeed: 50,
+    delaySpeed: 2000,
+    deleteSpeed: 25,
+    typeSpeed: 80,
   })
 
+  const mainText = "We're acquiring the infrastructure that powers food commerce—strategic POS systems across 2000+ locations—to build the world's most comprehensive food intelligence platform. Our AI transforms real-time transaction data into actionable insights, creating an unprecedented competitive advantage in the $9.4T global food industry."
+  
   const stats = [
     { value: "$9.4T", label: "Food Industry TAM" },
     { value: "$1B+", label: "Target Valuation" },
     { value: "2000+", label: "POS Acquisitions" },
     { value: "300M+", label: "Future Customers" }
-  ];
+  ]
 
-  const ctaButtons = [
-    { href: "#business", label: "Investment Opportunity", primary: true },
-    { href: "#ai-services", label: "Our Technology", primary: false },
-    { href: "#contact", label: "Partner With Us", primary: false }
-  ];
+  const benefits = [
+    { text: "Source-Level Data Access", color: "text-green-400" },
+    { text: "Strategic Acquisition Model", color: "text-purple-400" },
+    { text: "Network Effects at Scale", color: "text-yellow-400" }
+  ]
+
+  // Smooth progressive animation system
+  useEffect(() => {
+    const timers: NodeJS.Timeout[] = []
+    
+    // Phase 1: Background elements (after brand header)
+    timers.push(setTimeout(() => setAnimationPhase(1), 1500))
+    
+    // Phase 2: Stats and CTAs (after main content) - Much faster
+    timers.push(setTimeout(() => setAnimationPhase(2), 2500))
+
+    return () => timers.forEach(clearTimeout)
+  }, [])
 
   return (
-    <div className='min-h-[80vh] md:min-h-screen relative flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-[rgb(36,36,36)] to-[rgb(25,25,25)]'>
+    <div className='min-h-screen relative flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-[rgb(36,36,36)] to-[rgb(25,25,25)]'>
       
-      {/* Animated Background Elements */}
+      {/* Enhanced Background Elements with Smooth Transitions */}
       <div className='absolute inset-0 overflow-hidden'>
+        {/* Smooth background circles */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ 
+            opacity: animationPhase >= 1 ? 0.05 : 0, 
+            scale: animationPhase >= 1 ? 1 : 0.5,
+            rotate: [0, 360]
+          }}
+          transition={{ 
+            opacity: { duration: 1.5, ease: "easeOut" },
+            scale: { duration: 1.5, ease: "easeOut" },
+            rotate: { duration: 20, repeat: Infinity, ease: "linear" }
+          }}
+          className='absolute top-1/4 left-1/4 w-80 h-80 border border-[#F7AB0A]/20 rounded-full'
+        />
+        
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ 
-            opacity: [0.05, 0.1, 0.05], 
-            scale: [0.8, 1.2, 0.8],
-            rotate: [0, 180, 360]
+            opacity: animationPhase >= 1 ? 0.04 : 0, 
+            scale: animationPhase >= 1 ? 1 : 0.8,
+            rotate: [360, 0]
           }}
           transition={{ 
-            duration: 20,
-            repeat: Infinity,
-            ease: "linear"
+            opacity: { duration: 1.5, ease: "easeOut", delay: 0.3 },
+            scale: { duration: 1.5, ease: "easeOut", delay: 0.3 },
+            rotate: { duration: 25, repeat: Infinity, ease: "linear" }
           }}
-          className='absolute top-1/4 left-1/4 w-96 h-96 border border-[#F7AB0A]/20 rounded-full'
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 1.2 }}
-          animate={{ 
-            opacity: [0.03, 0.08, 0.03], 
-            scale: [1.2, 0.8, 1.2],
-            rotate: [360, 180, 0]
-          }}
-          transition={{ 
-            duration: 25,
-            repeat: Infinity,
-            ease: "linear"
-          }}
-          className='absolute bottom-1/4 right-1/4 w-80 h-80 border border-green-500/20 rounded-full'
+          className='absolute bottom-1/4 right-1/4 w-64 h-64 border border-emerald-500/20 rounded-full'
         />
         
-        {/* Floating Data Particles */}
-        {[...Array(12)].map((_, i) => (
+        {/* Staggered data points with smooth entrance */}
+        {[...Array(6)].map((_, i) => (
           <motion.div
             key={i}
-            initial={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: 0 
-            }}
+            initial={{ opacity: 0, scale: 0 }}
             animate={{ 
-              x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
-              y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
-              opacity: [0, 0.6, 0]
+              opacity: animationPhase >= 2 ? 0.6 : 0,
+              scale: animationPhase >= 2 ? 1 : 0
             }}
             transition={{ 
-              duration: 8 + Math.random() * 4,
-              repeat: Infinity,
-              delay: Math.random() * 5
+              delay: 0.2 * i,
+              opacity: { duration: 0.8, ease: "easeOut" },
+              scale: { 
+                duration: 3 + i * 0.5,
+                repeat: Infinity,
+                repeatDelay: i * 0.4,
+                ease: "easeInOut"
+              }
             }}
             className='absolute w-2 h-2 bg-[#F7AB0A] rounded-full'
+            style={{
+              left: `${20 + (i * 15)}%`,
+              top: `${30 + (i % 2 === 0 ? 10 : -10)}%`
+            }}
           />
         ))}
+        
+        {/* Smooth accent line */}
+        <motion.div
+          initial={{ scaleX: 0, opacity: 0 }}
+          animate={{ 
+            scaleX: animationPhase >= 1 ? 1 : 0,
+            opacity: animationPhase >= 1 ? 0.3 : 0
+          }}
+          transition={{ duration: 2.0, ease: "easeOut", delay: 0.5 }}
+          className='absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#F7AB0A] to-transparent'
+        />
       </div>
 
-      {/* Main Content */}
-      <div className='relative z-20 max-w-6xl mx-auto px-6'>
+      {/* Main Content with Smooth Flow */}
+      <motion.div 
+        className='relative z-20 max-w-6xl mx-auto px-6'
+        variants={staggerContainer}
+        initial="initial"
+        animate="animate"
+      >
         
-        {/* Logo */}
+        {/* Brand Header - Smooth Sequential Animation */}
         <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className='mb-8'
+          variants={fadeInUp}
+          className='text-center mb-10'
         >
-          <div className='relative w-72 h-72 mx-auto mb-4 transform -translate-x-2'>
-            <Image 
-              className='object-contain'
-              src='/logos/icon.png'
-              alt='Breme AI Logo'
-              fill
-              priority
-            />
+          {/* BREME Header with Fluid Stagger */}
+          <div className='text-6xl md:text-8xl lg:text-9xl font-bold mb-6 tracking-wider'>
+            {'BREME'.split('').map((letter, index) => (
+              <motion.span
+                key={index}
+                initial={{ opacity: 0, y: 50, rotateX: -90 }}
+                animate={{ opacity: 1, y: 0, rotateX: 0 }}
+                transition={{ 
+                  duration: 0.6, 
+                  delay: 0.1 + index * 0.1,
+                  ease: [0.25, 0.46, 0.45, 0.94]
+                }}
+                className='inline-block text-[#F7AB0A] drop-shadow-2xl'
+              >
+                {letter}
+              </motion.span>
+            ))}
           </div>
-        </motion.div>
-
-        {/* Company Name & Tagline */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className='mb-8'
-        >
-          <h2 className='text-sm md:text-base uppercase text-[#F7AB0A] pb-4 tracking-[8px] md:tracking-[15px] font-medium'>
-            BREME
-          </h2>
-          <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight'>
-            <span className='mr-3'>{text}</span>
-            <Cursor cursorColor='#F7AB0A' />
-          </h1>
-        </motion.div>
-
-        {/* Value Proposition */}
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className='mb-12'
-        >
-          <p className='text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8'>
-            We&apos;re building the world&apos;s most comprehensive food intelligence platform through strategic 
-            POS acquisitions and AI-powered data analytics. Join us in revolutionizing how the $9.4T food industry operates.
-          </p>
           
-          {/* Key Benefits */}
-          <div className='flex flex-wrap justify-center gap-4 md:gap-8 text-sm md:text-base'>
-            <div className='flex items-center space-x-2 text-green-400'>
-              <span className='w-2 h-2 bg-green-400 rounded-full'></span>
-              <span>Source-Level Data Access</span>
+          {/* Logo with Smooth Entrance */}
+          <motion.div
+            initial={{ scale: 0, rotate: -90 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 1.0, delay: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className='flex items-center justify-center gap-6 mb-6'
+          >
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "4rem" }}
+              transition={{ duration: 1.2, delay: 1.3, ease: "easeOut" }}
+              className='h-px bg-gradient-to-r from-transparent to-[#F7AB0A]'
+            />
+            
+            <div className='relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 p-2'>
+              <Image 
+                className='object-contain'
+                src='/logos/icon.png'
+                alt='Breme AI Logo'
+                fill
+                priority
+              />
             </div>
-            <div className='flex items-center space-x-2 text-blue-400'>
-              <span className='w-2 h-2 bg-blue-400 rounded-full'></span>
-              <span>Strategic Acquisition Model</span>
-            </div>
-            <div className='flex items-center space-x-2 text-purple-400'>
-              <span className='w-2 h-2 bg-purple-400 rounded-full'></span>
-              <span>Network Effects at Scale</span>
-            </div>
-          </div>
+            
+            <motion.div 
+              initial={{ width: 0 }}
+              animate={{ width: "4rem" }}
+              transition={{ duration: 1.2, delay: 1.3, ease: "easeOut" }}
+              className='h-px bg-gradient-to-l from-transparent to-[#F7AB0A]'
+            />
+          </motion.div>
+          
+          {/* Enhanced Dynamic Typewriter */}
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.0, delay: 1.2, ease: "easeOut" }}
+            className='mb-10'
+          >
+            {/* Typewriter Container with Smooth Effects */}
+            <motion.div 
+              className='relative'
+              style={{ 
+                boxShadow: "0 0 20px rgba(247, 171, 10, 0.15)"
+              }}
+            >
+              {/* Smooth Theme Color Background */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl"
+                style={{
+                  background: "linear-gradient(45deg, rgba(247, 171, 10, 0.08), rgba(16, 185, 129, 0.06), rgba(107, 114, 128, 0.04))",
+                  opacity: 0.5
+                }}
+              />
+              
+              {/* Main Typewriter Text */}
+              <div className='relative z-10 text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight min-h-[140px] flex items-center justify-center px-8 py-6'>
+                <TypewriterWithHighlights text={String(text)} />
+              </div>
+              
+              {/* Smooth Border Animation */}
+              <motion.div
+                className="absolute inset-0 rounded-2xl border-2"
+                style={{ 
+                  borderColor: "rgba(247, 171, 10, 0.4)",
+                  boxShadow: "0 0 20px rgba(247, 171, 10, 0.15)"
+                }}
+              />
+            </motion.div>
+            
+            {/* Subtitle with Smooth Transition */}
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.8, duration: 0.8, ease: "easeOut" }}
+              className='text-lg md:text-xl text-gray-100 uppercase tracking-[4px] font-medium mt-6'
+              style={{
+                background: 'linear-gradient(135deg, #F7AB0A 0%, #10B981 50%, #6B7280 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              Food Intelligence Platform
+            </motion.p>
+          </motion.div>
         </motion.div>
 
-        {/* Stats Grid */}
+        {/* Main Value Proposition with Smooth Flow */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className='mb-12'
+          transition={{ duration: 1.0, delay: 2.2, ease: "easeOut" }}
+          className='mb-10'
         >
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 bg-gradient-to-r from-[#292929]/60 to-[#1f1f1f]/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#F7AB0A]/20'>
+          <motion.div 
+            className='text-lg md:text-xl leading-relaxed max-w-4xl mx-auto mb-6 text-gray-200'
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.0, delay: 2.5, ease: "easeOut" }}
+          >
+            {mainText}
+          </motion.div>
+          
+          {/* Benefits with Smooth Stagger */}
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            animate="animate"
+            className='flex flex-wrap justify-center gap-4 md:gap-8 text-sm md:text-base'
+          >
+            {benefits.map((benefit, index) => (
+              <motion.div
+                key={index}
+                variants={fadeInScale}
+                transition={{ delay: 2.8 + index * 0.15 }}
+                className={`flex items-center space-x-2 ${benefit.color}`}
+              >
+                <motion.span 
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  transition={{ 
+                    duration: 0.5,
+                    delay: 3.0 + index * 0.15,
+                    ease: "easeOut"
+                  }}
+                  className={`w-2 h-2 rounded-full ${benefit.color.replace('text-', 'bg-')}`}
+                />
+                <span>{benefit.text}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* Stats Grid with Smooth Reveals */}
+        <motion.div
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ 
+            y: animationPhase >= 2 ? 0 : 30, 
+            opacity: animationPhase >= 2 ? 1 : 0 
+          }}
+          transition={{ duration: 0.8, delay: 2.8, ease: "easeOut" }}
+          className='mb-10'
+        >
+          <motion.div 
+            className='grid grid-cols-2 md:grid-cols-4 gap-6 bg-gradient-to-r from-[#292929]/60 to-[#1f1f1f]/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-[#F7AB0A]/20'
+            variants={staggerContainer}
+            initial="initial"
+            animate={animationPhase >= 2 ? "animate" : "initial"}
+          >
             {stats.map((stat, index) => (
               <motion.div
                 key={index}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
+                variants={{
+                  initial: { scale: 0.8, opacity: 0, rotateY: 45 },
+                  animate: { 
+                    scale: 1, 
+                    opacity: 1,
+                    rotateY: 0,
+                    transition: { 
+                      duration: 0.8,
+                      delay: index * 0.1,
+                      ease: "easeOut"
+                    }
+                  }
+                }}
                 className='text-center'
               >
-                <div className='text-2xl md:text-3xl lg:text-4xl font-bold text-[#F7AB0A] mb-2'>
+                <motion.div 
+                  initial={{ scale: 1 }}
+                  animate={{ 
+                    scale: animationPhase >= 2 ? 1 : 1
+                  }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: 3.2 + index * 0.1,
+                    ease: "easeOut"
+                  }}
+                  className='text-2xl md:text-3xl font-bold text-[#F7AB0A] mb-2'
+                >
                   {stat.value}
-                </div>
+                </motion.div>
                 <div className='text-xs md:text-sm text-gray-400 uppercase tracking-wider'>
                   {stat.label}
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons with Smooth Stagger */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.0, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className='mb-12'
+          animate={{ 
+            y: animationPhase >= 2 ? 0 : 30, 
+            opacity: animationPhase >= 2 ? 1 : 0 
+          }}
+          transition={{ duration: 0.8, delay: 3.2, ease: "easeOut" }}
+          className='mb-10'
         >
-          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center'>
-            {ctaButtons.map((button, index) => (
+          <motion.div 
+            className='flex flex-col sm:flex-row gap-4 justify-center items-center'
+            variants={staggerContainer}
+            initial="initial"
+            animate={animationPhase >= 2 ? "animate" : "initial"}
+          >
+            {[
+              { href: "#business", label: "Investment Opportunity", primary: true },
+              { href: "#ai-services", label: "Our Technology", primary: false },
+              { href: "#contact", label: "Partner With Us", primary: false }
+            ].map((button, index) => (
               <Link key={index} href={button.href}>
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
+                  variants={{
+                    initial: { scale: 0.8, opacity: 0, y: 20 },
+                    animate: { 
+                      scale: 1, 
+                      opacity: 1,
+                      y: 0,
+                      transition: { 
+                        duration: 0.8,
+                        delay: index * 0.15,
+                        ease: "easeOut"
+                      }
+                    }
+                  }}
+                  whileHover={{ scale: 1.05, transition: { duration: 0.2 } }}
                   whileTap={{ scale: 0.95 }}
                   className={`px-8 py-4 rounded-lg font-semibold text-base transition-all duration-300 border-2 min-w-[200px] ${
                     button.primary 
@@ -208,39 +589,44 @@ function CompanyHero({ companyInfo }: Props) {
                 </motion.button>
               </Link>
             ))}
-          </div>
+          </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator with Smooth Entrance */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ 
+            opacity: animationPhase >= 2 ? 1 : 0,
+            y: animationPhase >= 2 ? 0 : 20
+          }}
+          transition={{ duration: 0.8, delay: 3.8, ease: "easeOut" }}
           className='mt-16 mb-8'
         >
           <Link href="#about">
             <motion.div
               animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
               className='flex flex-col items-center cursor-pointer text-gray-400 hover:text-[#F7AB0A] transition-colors group'
             >
-              <span className='text-xs uppercase tracking-wider mb-3 group-hover:text-[#F7AB0A] transition-colors'>Scroll to explore</span>
-              <div className='w-6 h-10 border-2 border-gray-400 group-hover:border-[#F7AB0A] rounded-full flex justify-center transition-colors'>
+              <span className='text-xs uppercase tracking-wider mb-3 group-hover:text-[#F7AB0A] transition-colors duration-300'>
+                Explore More
+              </span>
+              <div className='w-6 h-10 border-2 border-gray-400 group-hover:border-[#F7AB0A] rounded-full flex justify-center transition-colors duration-300'>
                 <motion.div
                   animate={{ y: [0, 6, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className='w-1 h-2 bg-gray-400 group-hover:bg-[#F7AB0A] rounded-full mt-2 transition-colors'
+                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+                  className='w-1 h-2 bg-gray-400 group-hover:bg-[#F7AB0A] rounded-full mt-2 transition-colors duration-300'
                 />
               </div>
             </motion.div>
           </Link>
         </motion.div>
-      </div>
+      </motion.div>
 
-      {/* Bottom Gradient Overlay */}
+      {/* Bottom Gradient */}
       <div className='absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[rgb(36,36,36)] to-transparent pointer-events-none' />
     </div>
   )
 }
 
-export default CompanyHero 
+export default CompanyHero

@@ -306,13 +306,10 @@ function AIServices({ aiServices }: Props) {
             <p className="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Join the AI revolution in food intelligence. Our three-tier service model adapts to your business needs while maximizing value for all participants.
             </p>
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <button className="bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black font-bold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-colors duration-300">
+            <div className="flex justify-center">
+              <a href="#contact" className="bg-[#F7AB0A] hover:bg-[#F7AB0A]/90 text-black font-bold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-colors duration-300 inline-block">
                 Reach Out
-              </button>
-              <button className="border-2 border-[#F7AB0A] text-[#F7AB0A] hover:bg-[#F7AB0A] hover:text-black font-bold py-3 md:py-4 px-6 md:px-8 rounded-lg transition-all duration-300">
-                Learn More
-              </button>
+              </a>
             </div>
           </div>
         </motion.div>

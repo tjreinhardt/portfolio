@@ -15,7 +15,7 @@ function DataApplications() {
         "Dietitian recommendation platforms"
       ],
       revenueModel: "Subscription SaaS for health platforms ($5-15/user/month)",
-      marketSize: "$4.2B health app market",
+      marketSize: "$36B+ health app market",
       partnerships: ["Fitbit", "Noom", "Weight Watchers", "Healthcare Systems"]
     },
     {
@@ -29,7 +29,7 @@ function DataApplications() {
         "Quality-to-cost ratio analytics"
       ],
       revenueModel: "Commission on savings generated (2-5% of user savings)",
-      marketSize: "$8.1B personal finance app market",
+      marketSize: "$105B+ personal finance app market",
       partnerships: ["Mint", "YNAB", "Honey", "Rakuten", "Instacart"]
     },
     {
@@ -43,7 +43,7 @@ function DataApplications() {
         "Food recall rapid response"
       ],
       revenueModel: "Enterprise licensing ($50K-500K/year per major retailer)",
-      marketSize: "$15.3B supply chain analytics market",
+      marketSize: "$8.2B supply chain analytics market",
       partnerships: ["Walmart", "Amazon Fresh", "Sysco", "US Foods"]
     },
     {
@@ -57,7 +57,7 @@ function DataApplications() {
         "Pharmaceutical research"
       ],
       revenueModel: "Research licensing & insurance partnerships ($1M+ per study)",
-      marketSize: "$31.3B healthcare analytics market",
+      marketSize: "$366B+ healthcare analytics market",
       partnerships: ["Mayo Clinic", "Kaiser Permanente", "Pfizer", "Johnson & Johnson"]
     },
     {
@@ -71,7 +71,7 @@ function DataApplications() {
         "Public health initiatives"
       ],
       revenueModel: "Government contracts ($500K-5M per city)",
-      marketSize: "$423B smart cities market",
+      marketSize: "$1.42T+ smart cities market",
       partnerships: ["City Governments", "USDA", "WHO", "UN Food Programme"]
     },
     {
@@ -85,7 +85,7 @@ function DataApplications() {
         "Cultural cuisine exploration"
       ],
       revenueModel: "Revenue share with food delivery (3-8% of orders)",
-      marketSize: "$150B online food delivery market",
+      marketSize: "$9.7B online food delivery market",
       partnerships: ["DoorDash", "Uber Eats", "Blue Apron", "HelloFresh"]
     }
   ];
@@ -94,7 +94,7 @@ function DataApplications() {
     {
       category: "Health & Fitness",
       partners: ["Fitbit", "MyFitnessPal", "Noom", "Apple Health", "Google Fit"],
-      value: "$96B market",
+      value: "$257B market",
       integration: "Nutrition tracking + shopping recommendations"
     },
     {
@@ -106,13 +106,13 @@ function DataApplications() {
     {
       category: "Food Delivery & Retail",
       partners: ["Instacart", "DoorDash", "Amazon Fresh", "Walmart"],
-      value: "$263B market",
+      value: "$1.7T market",
       integration: "Personalized recommendations + supply optimization"
     },
     {
       category: "Healthcare Systems",
       partners: ["Mayo Clinic", "Kaiser", "CVS Health", "Teladoc"],
-      value: "$350B market",
+      value: "$214B market",
       integration: "Preventive care + nutrition therapy"
     }
   ];
@@ -142,7 +142,7 @@ function DataApplications() {
           className='text-center mb-16'
         >
           <h4 className='text-3xl md:text-4xl font-bold text-[#F7AB0A] mb-6'>
-            The Central Nervous System of Food Industry
+            Central Nervous System of the Food Industry
           </h4>
           <p className='text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8'>
             Our source-level food data creates endless partnership opportunities and revenue streams. 
@@ -152,7 +152,7 @@ function DataApplications() {
           <div className='bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 rounded-lg p-4 md:p-6 max-w-4xl mx-auto'>
             <div className='grid grid-cols-2 md:grid-cols-4 gap-4 text-center'>
               <div>
-                <div className='text-xl md:text-2xl font-bold text-[#F7AB0A]'>$1.2T+</div>
+                <div className='text-xl md:text-2xl font-bold text-[#F7AB0A]'>$6.6T+</div>
                 <div className='text-xs md:text-sm text-gray-300'>Total Addressable Market</div>
               </div>
               <div>
@@ -330,21 +330,138 @@ function DataApplications() {
           </div>
           
           <div className='bg-[#292929] rounded-lg p-4 md:p-6'>
-            <h5 className='text-xl font-bold text-[#F7AB0A] mb-4'>
+            <h5 className='text-xl font-bold text-[#F7AB0A] mb-6 text-center'>
               Conservative Revenue Projection
             </h5>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-300'>
-              <div>
-                <div className='font-semibold text-green-400'>Year 1-2:</div>
-                <div>$50M-100M from initial partnerships</div>
+            
+            {/* Progressive Revenue Timeline */}
+            <div className='relative'>
+              {/* Connecting Progress Line */}
+              <div className='absolute top-16 left-0 right-0 h-0.5 bg-gradient-to-r from-green-400 via-blue-400 to-purple-400 hidden md:block' />
+              
+              {/* Revenue Milestones */}
+              <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
+                {/* Phase 1: Year 1-2 */}
+                <div className='relative bg-gradient-to-br from-green-500/10 to-green-600/5 rounded-xl p-6 border border-green-500/30 hover:border-green-400/50 transition-all duration-300 hover:scale-105'>
+                  {/* Progress Indicator */}
+                  <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-green-500 rounded-full border-4 border-[#292929] flex items-center justify-center hidden md:flex'>
+                    <div className='w-2 h-2 bg-white rounded-full' />
+                  </div>
+                  
+                  <div className='text-center'>
+                    <div className='text-2xl md:text-3xl font-bold text-green-400 mb-2'>
+                      $50M-100M
+                    </div>
+                    <div className='text-sm font-semibold text-green-300 mb-3 uppercase tracking-wide'>
+                      Year 1-2: Foundation
+                    </div>
+                    <div className='text-sm text-gray-300 leading-relaxed'>
+                      Initial partnerships with health apps, finance platforms, and early enterprise clients
+                    </div>
+                    
+                    {/* Key Metrics */}
+                    <div className='mt-4 pt-4 border-t border-green-500/20'>
+                      <div className='flex justify-between items-center text-xs'>
+                        <span className='text-gray-400'>Revenue Stream:</span>
+                        <span className='text-green-300 font-medium'>Partnerships</span>
+                      </div>
+                      <div className='flex justify-between items-center text-xs mt-1'>
+                        <span className='text-gray-400'>Growth Rate:</span>
+                        <span className='text-green-300 font-medium'>200%+ YoY</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phase 2: Year 3-5 */}
+                <div className='relative bg-gradient-to-br from-blue-500/10 to-blue-600/5 rounded-xl p-6 border border-blue-500/30 hover:border-blue-400/50 transition-all duration-300 hover:scale-105'>
+                  {/* Progress Indicator */}
+                  <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-[#292929] flex items-center justify-center hidden md:flex'>
+                    <div className='w-2 h-2 bg-white rounded-full' />
+                  </div>
+                  
+                  <div className='text-center'>
+                    <div className='text-2xl md:text-3xl font-bold text-blue-400 mb-2'>
+                      $500M-1B
+                    </div>
+                    <div className='text-sm font-semibold text-blue-300 mb-3 uppercase tracking-wide'>
+                      Year 3-5: Scale
+                    </div>
+                    <div className='text-sm text-gray-300 leading-relaxed'>
+                      Scaled integrations across multiple industries with enterprise licensing and data products
+                    </div>
+                    
+                    {/* Key Metrics */}
+                    <div className='mt-4 pt-4 border-t border-blue-500/20'>
+                      <div className='flex justify-between items-center text-xs'>
+                        <span className='text-gray-400'>Revenue Stream:</span>
+                        <span className='text-blue-300 font-medium'>Enterprise + SaaS</span>
+                      </div>
+                      <div className='flex justify-between items-center text-xs mt-1'>
+                        <span className='text-gray-400'>Market Position:</span>
+                        <span className='text-blue-300 font-medium'>Market Leader</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phase 3: Year 5+ */}
+                <div className='relative bg-gradient-to-br from-purple-500/10 to-purple-600/5 rounded-xl p-6 border border-purple-500/30 hover:border-purple-400/50 transition-all duration-300 hover:scale-105'>
+                  {/* Progress Indicator */}
+                  <div className='absolute -top-3 left-1/2 transform -translate-x-1/2 w-6 h-6 bg-purple-500 rounded-full border-4 border-[#292929] flex items-center justify-center hidden md:flex'>
+                    <div className='w-2 h-2 bg-white rounded-full' />
+                  </div>
+                  
+                  <div className='text-center'>
+                    <div className='text-2xl md:text-3xl font-bold text-purple-400 mb-2'>
+                      $2B+
+                    </div>
+                    <div className='text-sm font-semibold text-purple-300 mb-3 uppercase tracking-wide'>
+                      Year 5+: Dominance
+                    </div>
+                    <div className='text-sm text-gray-300 leading-relaxed'>
+                      Data monopoly value with unparalleled food intelligence platform commanding premium pricing
+                    </div>
+                    
+                    {/* Key Metrics */}
+                    <div className='mt-4 pt-4 border-t border-purple-500/20'>
+                      <div className='flex justify-between items-center text-xs'>
+                        <span className='text-gray-400'>Revenue Stream:</span>
+                        <span className='text-purple-300 font-medium'>Data Monopoly</span>
+                      </div>
+                      <div className='flex justify-between items-center text-xs mt-1'>
+                        <span className='text-gray-400'>Market Cap:</span>
+                        <span className='text-purple-300 font-medium'>$10B+</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <div className='font-semibold text-blue-400'>Year 3-5:</div>
-                <div>$500M-1B from scaled integrations</div>
-              </div>
-              <div>
-                <div className='font-semibold text-purple-400'>Year 5+:</div>
-                <div>$2B+ data monopoly value</div>
+              
+              {/* Growth Trajectory Summary */}
+              <div className='mt-8 pt-6 border-t border-gray-600'>
+                <div className='text-center'>
+                  <div className='text-sm text-gray-400 mb-2'>Total Revenue Growth Trajectory</div>
+                  <div className='flex items-center justify-center space-x-4 text-xs'>
+                    <div className='flex items-center space-x-2'>
+                      <div className='w-3 h-3 bg-green-500 rounded-full' />
+                      <span className='text-gray-300'>Foundation</span>
+                    </div>
+                    <div className='text-gray-500'>→</div>
+                    <div className='flex items-center space-x-2'>
+                      <div className='w-3 h-3 bg-blue-500 rounded-full' />
+                      <span className='text-gray-300'>Scale</span>
+                    </div>
+                    <div className='text-gray-500'>→</div>
+                    <div className='flex items-center space-x-2'>
+                      <div className='w-3 h-3 bg-purple-500 rounded-full' />
+                      <span className='text-gray-300'>Dominance</span>
+                    </div>
+                  </div>
+                  <div className='mt-3 text-sm text-[#F7AB0A] font-semibold'>
+                    Conservative 40x Revenue Multiple Over 5 Years
+                  </div>
+                </div>
               </div>
             </div>
           </div>

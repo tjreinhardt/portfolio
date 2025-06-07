@@ -18,23 +18,23 @@ function Business({ businessModel }: Props) {
   const acquisitionStrategy = [
     {
       phase: "Phase 1: Foundation",
-      timeline: "0-18 months",
-      funding: "$500K-$1.2M Pre-Seed",
+      timeline: "0-6 months",
+      funding: "$1M-$1.5M Pre-Seed",
       milestones: ["Full-time founders", "AI prototype", "Initial partnerships"],
       icon: "🚀"
     },
     {
       phase: "Phase 2: Strategic Acquisition", 
-      timeline: "18-30 months",
-      funding: "$50M-$300M Series A",
-      milestones: ["First POS acquisition", "100+ food establishment integration", "Data platform launch"],
+      timeline: "6-18 months",
+      funding: "$1B+ Series A",
+      milestones: ["First POS acquisition", "3000+ food establishment integration", "Data platform launch"],
       icon: "🎯"
     },
     {
       phase: "Phase 3: Market Expansion",
-      timeline: "30-42 months", 
+      timeline: "18-42 months", 
       funding: "$1B+ Series B",
-      milestones: ["Multi-state presence", "10K+ food establishments", "Partnership ecosystem"],
+      milestones: ["Multi-state presence", "10K+ food establishments", "Partnership ecosystem", "Venture Pods"],
       icon: "📈"
     }
   ];
@@ -105,12 +105,12 @@ function Business({ businessModel }: Props) {
               <div className="bg-[#292929]/50 rounded-lg p-4">
                 <div className="text-2xl mb-2">🍽️</div>
                 <div className="text-sm font-semibold text-white">Restaurants</div>
-                <div className="text-xs text-gray-400">400K+ in US</div>
+                <div className="text-xs text-gray-400">749K+ in US</div>
               </div>
               <div className="bg-[#292929]/50 rounded-lg p-4">
                 <div className="text-2xl mb-2">🛒</div>
                 <div className="text-sm font-semibold text-white">Grocery Stores</div>
-                <div className="text-xs text-gray-400">63K+ locations</div>
+                <div className="text-xs text-gray-400">305K+ locations</div>
               </div>
               <div className="bg-[#292929]/50 rounded-lg p-4">
                 <div className="text-2xl mb-2">🍺</div>

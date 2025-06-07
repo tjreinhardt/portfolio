@@ -6,7 +6,7 @@ export const companyInfo: CompanyInfo = {
   _updatedAt: '2024-01-01',
   _rev: '1',
   _type: 'companyInfo' as const,
-  name: "Breme AI",
+  name: "Breme",
   tagline: "Revolutionizing Food Industry Intelligence",
   description: "Strategic POS acquisition combined with AI-powered food intelligence creates the most valuable data platform in the $9.4T food industry",
   mission: "To become the central nervous system of the food industry through strategic POS acquisition and AI-powered data intelligence",
@@ -278,7 +278,7 @@ export const launchInfo: LaunchInfo = {
   _rev: '1',
   _type: 'launchInfo' as const,
   currentStage: "Pre-Seed Funding",
-  stageDescription: "Seeking $500K-$1.2M to build founding team and develop AI prototype",
+  stageDescription: "Seeking $1M-$1.5M to build founding team and develop AI prototype",
   timeline: [
     {
       phase: "Pre-Seed Funding",
@@ -295,7 +295,7 @@ export const launchInfo: LaunchInfo = {
     {
       phase: "Prototype Development", 
       status: "Planned",
-      duration: "6-18 months",
+      duration: "0-18 months",
       description: "Build AI integration platform and establish partnerships",
       milestones: [
         "AI integration platform build",
@@ -307,7 +307,7 @@ export const launchInfo: LaunchInfo = {
     {
       phase: "Strategic Acquisition",
       status: "Planned",
-      duration: "18-30 months", 
+      duration: "6-24 months", 
       description: "Execute first POS acquisition and launch data platform",
       milestones: [
         "First POS company acquisition",
@@ -319,7 +319,7 @@ export const launchInfo: LaunchInfo = {
     {
       phase: "Market Launch",
       status: "Planned",
-      duration: "30-42 months",
+      duration: "24-42 months",
       description: "Scale to multi-state presence and platform dominance",
       milestones: [
         "Multi-state market presence",
@@ -331,7 +331,7 @@ export const launchInfo: LaunchInfo = {
   ],
   fundingNeeds: {
     preSeed: {
-      amount: "$500K-$1.2M",
+      amount: "$1M-$1.5M",
       purpose: "Team building and prototype development",
       timeline: "0-6 months",
       keyUses: [
@@ -342,9 +342,9 @@ export const launchInfo: LaunchInfo = {
       ]
     },
     seedRound: {
-      amount: "$50M-$200M",
+      amount: "$1B",
       purpose: "Strategic POS acquisition and platform launch",
-      timeline: "18-30 months",
+      timeline: "6-18 months",
       keyUses: [
         "First POS company acquisition",
         "AI platform development",

@@ -138,30 +138,30 @@ function Header({ socials, onLogout }: Props) {
         <div className='w-full max-w-7xl mx-auto flex items-center justify-between px-2'>
           {/* Left side: Social Icons + Logo */}
                       <div className='flex items-center space-x-3'>
-            <motion.div
-              initial={{
+      <motion.div
+        initial={{
                 x: -100,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
-              transition={{
+          opacity: 0,
+        }}
+        animate={{
+          x: 0,
+          opacity: 1,
+        }}
+        transition={{
                 duration: 0.8,
-              }}
+        }}
               className='flex flex-row items-center'
             >
               <div className='flex space-x-1'>
                 {socials.slice(0, 3).map((social) => (
-                  <SocialIcon
-                    key={social._id}
-                    url={social.url}
-                    fgColor="gray"
-                    bgColor="transparent"
+          <SocialIcon
+            key={social._id}
+            url={social.url}
+            fgColor="gray"
+            bgColor="transparent"
                     className="!h-6 !w-6 md:!h-7 md:!w-7 hover:opacity-75 transition-opacity"
-                  />
-                ))}
+          />
+        ))}
               </div>
             </motion.div>
 
@@ -191,7 +191,7 @@ function Header({ socials, onLogout }: Props) {
                   />
                 </div>
               </Link>
-            </motion.div>
+      </motion.div>
           </div>
 
           {/* Desktop Navigation Menu */}
@@ -258,29 +258,29 @@ function Header({ socials, onLogout }: Props) {
 
           {/* Desktop Contact Button */}
           <Link href="#contact" className="hidden lg:block">
-            <motion.div
-              initial={{
+        <motion.div
+          initial={{
                 x: 100,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-              }}
+            opacity: 0,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+          }}
               transition={{ duration: 0.8, delay: 0.4 }}
               className='flex flex-row items-center text-gray-300 cursor-pointer hover:text-[#F7AB0A] transition-colors group'
             >
-              <SocialIcon
+          <SocialIcon
                 className='cursor-pointer !h-6 !w-6 md:!h-7 md:!w-7 group-hover:opacity-75 transition-opacity'
-                network="email"
-                fgColor='gray'
-                bgColor='transparent'
-              />
+            network="email"
+            fgColor='gray'
+            bgColor='transparent'
+          />
               <p className='uppercase ml-2 text-xs text-gray-400 whitespace-nowrap'>
-                Get In Touch
-              </p>
-            </motion.div>
-          </Link>
+            Get In Touch
+          </p>
+        </motion.div>
+      </Link>
         </div>
       </motion.header>
 

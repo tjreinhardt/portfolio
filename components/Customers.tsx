@@ -278,7 +278,7 @@ function Customers({ customers }: Props) {
           </div>
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Call to Action
         <motion.div 
           variants={fadeIn}
           initial="initial"
@@ -313,7 +313,7 @@ function Customers({ customers }: Props) {
               <span className='font-semibold text-[#F7AB0A]'>$2.3M</span> Saved by Customers
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </motion.div>
   )
