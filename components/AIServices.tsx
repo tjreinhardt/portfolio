@@ -111,13 +111,13 @@ function AIServices({ aiServices }: Props) {
   return (
     <div className="min-h-0 relative bg-[rgb(36,36,36)] py-12 md:py-20 px-4">
       {/* Background Effects */}
-      <div className='w-full absolute top-[10%] md:top-[20%] bg-[#F7AB0A]/5 left-0 h-[300px] md:h-[500px] skew-y-12' />
+      <div className='w-full relative top-0 bg-[#F7AB0A]/5 left-0 h-auto skew-y-12' />
       
       <motion.div 
         variants={fadeIn}
         initial="initial"
         whileInView="animate"
-        viewport={optimizedViewport}
+        viewport={{ once: true, amount: 0 }}
         className="max-w-7xl mx-auto"
       >
         {/* Header */}
