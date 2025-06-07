@@ -109,7 +109,7 @@ function DataRevolution() {
       viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='min-h-0 relative flex overflow-hidden flex-col text-left max-w-full px-4 md:px-10 justify-center mx-auto items-center py-12 md:py-20'
+      className='min-h-0 relative max-w-full px-4 md:px-10 mx-auto py-12 md:py-20'
     >
       <h3 className='absolute top-6 md:top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[10px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl text-center'>
         Data Revolution

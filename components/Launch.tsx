@@ -48,15 +48,15 @@ function Launch({ launchInfo }: Props) {
       viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='min-h-0 relative flex overflow-hidden flex-col text-left max-w-full px-4 md:px-10 justify-center mx-auto items-center py-12 md:py-20'
+      className='min-h-0 relative max-w-full px-4 md:px-10 mx-auto py-12 md:py-20'
     >
       <h3 className='absolute top-6 md:top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[8px] md:tracking-[20px] text-gray-500 text-base md:text-2xl text-center'>
         Timeline
       </h3>
 
-      <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
+      <div className='w-full absolute top-[10%] md:top-[20%] bg-[#F7AB0A]/5 left-0 h-[300px] md:h-[500px] skew-y-12' />
 
-      <div className='mt-20 z-20 max-w-7xl mx-auto w-full'>
+      <div className='mt-16 md:mt-20 z-20 max-w-7xl mx-auto w-full'>
         
         {/* Current Stage Hero */}
         <motion.div 
