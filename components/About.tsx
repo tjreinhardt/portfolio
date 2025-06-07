@@ -1,49 +1,49 @@
-import React from 'react'
+import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { PageInfo } from "../typings"
+
+// Optimized animation variant - computed once
+const fadeInVariant = {
+  initial: { opacity: 0 },
+  animate: { 
+    opacity: 1,
+    transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+}
 
 type Props = {
   pageInfo: PageInfo
 }
 
-function About({ pageInfo }: Props) {
+const About = memo(({ pageInfo }: Props) => {
+  // Memoize processed data
+  const memoizedData = useMemo(() => ({
+    backgroundInformation: pageInfo?.backgroundInformation || ''
+  }), [pageInfo?.backgroundInformation])
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      viewport={{ once: true }}
-      whileInView={{ opacity: 1 }}
-      transition={{ duration: 1.2 }}
+          <motion.div
+        variants={fadeInVariant}
+        initial="initial"
+        viewport={{ once: true }}
+        whileInView="animate"
+        className='flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-6 md:px-10 mx-auto items-center justify-center'>
+        <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'>
+          About
+        </h3>
 
-      className='flex flex-col relative h-screen text-center md:text-left md:flex-row max-w-7xl px-6 md:px-10 mx-auto items-center justify-center'>
-      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'>
-        About
-      </h3>
+        <div className='space-y-5 md:space-y-5 px-0 md:px-10 mt-24'>
+          <h4 className='text-xl md:text-2xl lg:text-4xl font-semibold mt-6'>Here is a{" "}
+            <span className='underline decoration-[#F7AB0A]'>little</span> background
+          </h4>
+          <p className=' text-xs md:text-lg pb-14'>
+            {memoizedData.backgroundInformation}
+          </p>
+        </div>
 
-      {/* <motion.img
-        initial={{
-          x: -200,
-          opacity: 0,
-        }}
-        transition={{
-          duration: 1.2,
-        }}
-      viewport={{ once: true }}
-      whileInView={{ opacity: 1, x: 0 }}
-        src={urlFor(pageInfo?.profilePic).url()}
-        className='-mb-24 md:mb-0 flex-shrink-0 w-40 h-40 mt-[110px] rounded-full object-cover md:rounded-lg md:w-64 md:h-96 xl:w-[500px] xl:h-[600px]'
-      /> */}
+      </motion.div>
+    )
+  })
 
-      <div className='space-y-5 md:space-y-5 px-0 md:px-10 mt-24'>
-        <h4 className='text-xl md:text-2xl lg:text-4xl font-semibold mt-6'>Here is a{" "}
-          <span className='underline decoration-[#F7AB0A]'>little</span> background
-        </h4>
-        <p className=' text-xs md:text-lg pb-14'>
-          {pageInfo?.backgroundInformation}
-        </p>
-      </div>
+  About.displayName = 'About'
 
-    </motion.div>
-  )
-}
-
-export default About
+  export default About

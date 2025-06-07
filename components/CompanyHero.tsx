@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, memo } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { Cursor, useTypewriter } from 'react-simple-typewriter'
 import Link from 'next/link'
 import Image from 'next/image'
 
-// Enhanced animation variants for consistent fluidity
+// Enhanced animation variants for consistent fluidity - Optimized for performance
 const smoothTransition = {
   duration: 0.8,
   ease: [0.25, 0.46, 0.45, 0.94] // Consistent smooth easing
@@ -46,27 +46,54 @@ const fadeInScale = {
   }
 }
 
-// Enhanced Typewriter with Dynamic Highlighting
-const TypewriterWithHighlights = ({ text }: { text: string }) => {
-  const highlightPatterns = [
-    // Left sections: Yellow/Gold with glow + scale (no underline)
-    { pattern: /Hungry\s+for\s+\$9\.4T/gi, color: '#F7AB0A', glow: true, scale: true },
-    { pattern: /Serving\s+AI/gi, color: '#F7AB0A', glow: true, scale: true },
-    { pattern: /2000\+\s+Restaurants/gi, color: '#F7AB0A', glow: true, scale: true },
-    { pattern: /Building\s+Tomorrow's/gi, color: '#F7AB0A', glow: true, scale: true },
-    { pattern: /Secret\s+Sauce/gi, color: '#F7AB0A', glow: true, scale: true },
-    
-    // Right sections: Green with glow + underline (always underlined)
-    { pattern: /Side\s+of\s+Insights/gi, color: '#10B981', glow: true, underline: true },
-    { pattern: /Data/gi, color: '#10B981', glow: true, underline: true },
-    { pattern: /Infinite\s+Intelligence/gi, color: '#10B981', glow: true, underline: true },
-    { pattern: /Food\s+Empire/gi, color: '#10B981', glow: true, underline: true }
-  ]
+// Memoized highlight patterns - computed once, never changes
+const HIGHLIGHT_PATTERNS = [
+  // Left sections: Yellow/Gold with glow + scale (no underline)
+  { pattern: /Hungry\s+for\s+\$9\.4T/gi, color: '#F7AB0A', glow: true, scale: true },
+  { pattern: /Serving\s+AI/gi, color: '#F7AB0A', glow: true, scale: true },
+  { pattern: /2000\+\s+Restaurants/gi, color: '#F7AB0A', glow: true, scale: true },
+  { pattern: /Building\s+Tomorrow's/gi, color: '#F7AB0A', glow: true, scale: true },
+  { pattern: /Secret\s+Sauce/gi, color: '#F7AB0A', glow: true, scale: true },
+  
+  // Right sections: Green with glow + underline (always underlined)
+  { pattern: /Side\s+of\s+Insights/gi, color: '#10B981', glow: true, underline: true },
+  { pattern: /Data/gi, color: '#10B981', glow: true, underline: true },
+  { pattern: /Infinite\s+Intelligence/gi, color: '#10B981', glow: true, underline: true },
+  { pattern: /Food\s+Empire/gi, color: '#10B981', glow: true, underline: true }
+]
 
-  const renderHighlightedText = (inputText: string) => {
+// Memoized typewriter words - prevents recreation
+const TYPEWRITER_WORDS = [
+  "Hungry for $9.4T in Data",
+  "Serving AI with a Side of Insights", 
+  "2000+ Restaurants, Infinite Intelligence",
+  "Building Tomorrow's Food Empire",
+  "The Secret Sauce is Data"
+]
+
+// Memoized stats data
+const STATS_DATA = [
+  { value: "$9.4T", label: "Food Industry TAM" },
+  { value: "$1B+", label: "Target Valuation" },
+  { value: "2000+", label: "POS Acquisitions" },
+  { value: "300M+", label: "Future Customers" }
+]
+
+// Memoized benefits data  
+const BENEFITS_DATA = [
+  { text: "Source-Level Data Access", color: "text-green-400" },
+  { text: "Strategic Acquisition Model", color: "text-purple-400" },
+  { text: "Network Effects at Scale", color: "text-yellow-400" }
+]
+
+// Enhanced Typewriter with Dynamic Highlighting - Optimized with memoization
+const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
+  
+  // Memoize the text processing to avoid recalculation on every render
+  const renderHighlightedText = useCallback((inputText: string) => {
     let parts = [{ text: inputText, highlight: null }]
     
-    highlightPatterns.forEach((pattern) => {
+    HIGHLIGHT_PATTERNS.forEach((pattern) => {
       const newParts: any[] = []
       parts.forEach((part) => {
         if (part.highlight) {
@@ -171,7 +198,7 @@ const TypewriterWithHighlights = ({ text }: { text: string }) => {
         </motion.span>
       )
     })
-  }
+  }, []) // Add dependencies array for useCallback
 
   return (
     <div className="relative">
@@ -192,44 +219,34 @@ const TypewriterWithHighlights = ({ text }: { text: string }) => {
       )}
     </div>
   )
-}
+})
+
+TypewriterWithHighlights.displayName = 'TypewriterWithHighlights'
 
 type Props = {
   companyInfo: any
 }
 
-function CompanyHero({ companyInfo }: Props) {
+const CompanyHero = memo(({ companyInfo }: Props) => {
   const [animationPhase, setAnimationPhase] = useState(0)
   const controls = useAnimation()
   
   const [text, count] = useTypewriter({
-    words: [
-      "Hungry for $9.4T in Data",
-      "Serving AI with a Side of Insights", 
-      "2000+ Restaurants, Infinite Intelligence",
-      "Building Tomorrow's Food Empire",
-      "The Secret Sauce is Data"
-    ],
+    words: TYPEWRITER_WORDS,
     loop: true,
     delaySpeed: 2000,
     deleteSpeed: 25,
     typeSpeed: 80,
   })
 
-  const mainText = "We're acquiring the infrastructure that powers food commerce—strategic POS systems across 2000+ locations—to build the world's most comprehensive food intelligence platform. Our AI transforms real-time transaction data into actionable insights, creating an unprecedented competitive advantage in the $9.4T global food industry."
+  // Memoize static content to prevent recreation
+  const mainText = useMemo(() => 
+    "We're acquiring the infrastructure that powers food commerce—strategic POS systems across 2000+ locations—to build the world's most comprehensive food intelligence platform. Our AI transforms real-time transaction data into actionable insights, creating an unprecedented competitive advantage in the $9.4T global food industry."
+  , [])
   
-  const stats = [
-    { value: "$9.4T", label: "Food Industry TAM" },
-    { value: "$1B+", label: "Target Valuation" },
-    { value: "2000+", label: "POS Acquisitions" },
-    { value: "300M+", label: "Future Customers" }
-  ]
-
-  const benefits = [
-    { text: "Source-Level Data Access", color: "text-green-400" },
-    { text: "Strategic Acquisition Model", color: "text-purple-400" },
-    { text: "Network Effects at Scale", color: "text-yellow-400" }
-  ]
+  // Use memoized static data
+  const stats = useMemo(() => STATS_DATA, [])
+  const benefits = useMemo(() => BENEFITS_DATA, [])
 
   // Smooth progressive animation system
   useEffect(() => {
@@ -627,6 +644,9 @@ function CompanyHero({ companyInfo }: Props) {
       <div className='absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[rgb(36,36,36)] to-transparent pointer-events-none' />
     </div>
   )
-}
+})
+
+TypewriterWithHighlights.displayName = 'TypewriterWithHighlights'
+CompanyHero.displayName = 'CompanyHero'
 
 export default CompanyHero

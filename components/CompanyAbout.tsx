@@ -1,12 +1,85 @@
-import React from 'react'
+import React, { memo, useMemo } from 'react'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+
+// Optimized animation variants - computed once, never recreated
+const fadeInLeft = {
+  hidden: { x: -200, opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 1.2, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+}
+
+const fadeInRight = {
+  hidden: { x: 200, opacity: 0 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 1.2, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }
+  }
+}
+
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+}
+
+const itemVariants = {
+  hidden: { 
+    scale: 0.8,
+    opacity: 0,
+    y: 20
+  },
+  visible: { 
+    scale: 1,
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
+  }
+}
+
+// Memoized animation constants
+const logoRotateAnimation = {
+  rotate: 360,
+  scale: [1, 1.05, 1]
+}
+
+const logoAnimationTransition = {
+  rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+  scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+}
 
 type Props = {
   companyInfo: any
 }
 
-function CompanyAbout({ companyInfo }: Props) {
+const CompanyAbout = memo(({ companyInfo }: Props) => {
+  // Memoize processed company data to prevent unnecessary recalculations
+  const memoizedCompanyData = useMemo(() => ({
+    name: companyInfo?.name || 'BREME',
+    aboutCompany: companyInfo?.aboutCompany || '',
+    mission: companyInfo?.mission || '',
+    vision: companyInfo?.vision || '',
+    values: companyInfo?.values || [],
+    founded: companyInfo?.founded || '',
+    stage: companyInfo?.stage || '',
+    headquarters: companyInfo?.headquarters || ''
+  }), [companyInfo])
+
+  // Memoize values existence check
+  const hasValues = useMemo(() => 
+    memoizedCompanyData.values && memoizedCompanyData.values.length > 0
+  , [memoizedCompanyData.values])
+
   return (
     <motion.div 
       initial={{ opacity: 0 }}
@@ -26,24 +99,18 @@ function CompanyAbout({ companyInfo }: Props) {
         
         {/* Logo Section - Enhanced */}
         <motion.div
-          initial={{ x: -200, opacity: 0 }}
+          variants={fadeInLeft}
+          initial="hidden"
           viewport={{ once: true }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2 }}
+          whileInView="visible"
           className='flex-shrink-0 relative'
         >
           {/* Logo Container with Glow Effect */}
           <div className='relative w-80 h-80 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] flex items-center justify-center'>
             {/* Animated Background Circle */}
             <motion.div
-              animate={{ 
-                rotate: 360,
-                scale: [1, 1.05, 1]
-              }}
-              transition={{ 
-                rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-              }}
+              animate={logoRotateAnimation}
+              transition={logoAnimationTransition}
               className='absolute inset-0 rounded-full border border-[#F7AB0A]/20 bg-gradient-to-r from-[#F7AB0A]/5 to-green-500/5'
             />
             
@@ -67,20 +134,20 @@ function CompanyAbout({ companyInfo }: Props) {
 
         {/* Content Section - Enhanced */}
         <motion.div
-          initial={{ x: 200, opacity: 0 }}
+          variants={fadeInRight}
+          initial="hidden"
           viewport={{ once: true }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
+          whileInView="visible"
           className='flex-1 space-y-8 text-center lg:text-left max-w-2xl'
         >
           {/* Main Heading */}
           <div>
             <h4 className='text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight'>
-              <span className='text-[#F7AB0A]'>{companyInfo?.name}</span>
+              <span className='text-[#F7AB0A]'>{memoizedCompanyData.name}</span>
               <br />
               <span className='text-white'>Transforming Food Industry Intelligence</span>
             </h4>
-            <p className='text-lg md:text-xl text-gray-200 leading-relaxed font-light'>{companyInfo?.aboutCompany}</p>
+            <p className='text-lg md:text-xl text-gray-200 leading-relaxed font-light'>{memoizedCompanyData.aboutCompany}</p>
           </div>
           
           {/* Mission & Vision - Side by Side Cards */}
@@ -91,7 +158,7 @@ function CompanyAbout({ companyInfo }: Props) {
             >
               <div className='text-3xl mb-3'>🎯</div>
               <h5 className='text-xl font-semibold text-[#F7AB0A] mb-3'>Our Mission</h5>
-              <p className='text-sm text-gray-200 leading-relaxed'>{companyInfo?.mission}</p>
+              <p className='text-sm text-gray-200 leading-relaxed'>{memoizedCompanyData.mission}</p>
             </motion.div>
             
             <motion.div 
@@ -100,12 +167,12 @@ function CompanyAbout({ companyInfo }: Props) {
             >
               <div className='text-3xl mb-3'>🚀</div>
               <h5 className='text-xl font-semibold text-green-400 mb-3'>Our Vision</h5>
-              <p className='text-sm text-gray-200 leading-relaxed'>{companyInfo?.vision}</p>
+              <p className='text-sm text-gray-200 leading-relaxed'>{memoizedCompanyData.vision}</p>
             </motion.div>
           </div>
           
           {/* Core Values - Enhanced Grid */}
-          {companyInfo?.values && companyInfo.values.length > 0 && (
+          {hasValues && (
             <div>
               <h5 className='text-2xl font-semibold text-white mb-6 flex items-center justify-center lg:justify-start'>
                 <span className='text-2xl mr-3'>💎</span>
@@ -115,35 +182,13 @@ function CompanyAbout({ companyInfo }: Props) {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.1
-                    }
-                  }
-                }}
+                variants={containerVariants}
                 className='grid grid-cols-2 lg:grid-cols-3 gap-3'
               >
-                {companyInfo.values.map((value: string, index: number) => (
+                {memoizedCompanyData.values.map((value: string, index: number) => (
                   <motion.div 
                     key={index}
-                    variants={{
-                      hidden: { 
-                        scale: 0.8,
-                        opacity: 0,
-                        y: 20
-                      },
-                      visible: { 
-                        scale: 1,
-                        opacity: 1,
-                        y: 0,
-                        transition: {
-                          duration: 0.5,
-                          ease: [0.25, 0.46, 0.45, 0.94]
-                        }
-                      }
-                    }}
+                    variants={itemVariants}
                     whileHover={{ 
                       scale: 1.05, 
                       y: -2,
@@ -165,21 +210,21 @@ function CompanyAbout({ companyInfo }: Props) {
                 <span className='text-2xl mr-2 mb-1 md:mb-0'>📅</span>
                 <div>
                   <div className='text-xs uppercase tracking-wider text-gray-400'>Founded</div>
-                  <div className='font-semibold text-[#F7AB0A]'>{companyInfo?.founded}</div>
+                  <div className='font-semibold text-[#F7AB0A]'>{memoizedCompanyData.founded}</div>
                 </div>
               </div>
               <div className='flex flex-col md:flex-row md:items-center'>
                 <span className='text-2xl mr-2 mb-1 md:mb-0'>🌱</span>
                 <div>
                   <div className='text-xs uppercase tracking-wider text-gray-400'>Stage</div>
-                  <div className='font-semibold text-green-400'>{companyInfo?.stage}</div>
+                  <div className='font-semibold text-green-400'>{memoizedCompanyData.stage}</div>
                 </div>
               </div>
               <div className='flex flex-col md:flex-row md:items-center'>
                 <span className='text-2xl mr-2 mb-1 md:mb-0'>📍</span>
                 <div>
                   <div className='text-xs uppercase tracking-wider text-gray-400'>Headquarters</div>
-                  <div className='font-semibold text-white'>{companyInfo?.headquarters}</div>
+                  <div className='font-semibold text-white'>{memoizedCompanyData.headquarters}</div>
                 </div>
               </div>
             </div>
@@ -188,6 +233,8 @@ function CompanyAbout({ companyInfo }: Props) {
       </div>
     </motion.div>
   )
-}
+})
+
+CompanyAbout.displayName = 'CompanyAbout'
 
 export default CompanyAbout 

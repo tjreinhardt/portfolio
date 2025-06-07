@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 const VALID_CREDENTIALS = [
   { username: 'investor', password: 'breme2024!' },
   { username: 'demo', password: 'foodtech2024' },
-  { username: 'admin', password: 'bremeAI2024' }
+  { username: 'admin', password: 'bremeAI2024' },
+  { username: 'anthony', password: 'breme2025!' }
 ];
 
 export const useAuth = () => {
