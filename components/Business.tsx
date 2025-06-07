@@ -70,9 +70,9 @@ function Business({ businessModel }: Props) {
   ];
 
   return (
-    <div className="min-h-[80vh] md:min-h-screen relative bg-[rgb(36,36,36)] py-20 px-4">
+    <div className="min-h-0 relative bg-[rgb(36,36,36)] py-12 md:py-20 px-4">
       {/* Background Effects */}
-      <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
+      <div className='w-full absolute top-[10%] md:top-[20%] bg-[#F7AB0A]/5 left-0 h-[300px] md:h-[500px] skew-y-12' />
       
       <motion.div 
         initial={{ opacity: 0 }}
@@ -82,19 +82,19 @@ function Business({ businessModel }: Props) {
         className="max-w-7xl mx-auto"
       >
         {/* Header */}
-        <div className="text-center mb-16">
-          <h3 className="uppercase tracking-[12px] md:tracking-[20px] text-gray-500 text-lg md:text-2xl mb-8 text-center">
+        <div className="text-center mb-12 md:mb-16">
+          <h3 className="uppercase tracking-[8px] md:tracking-[20px] text-gray-500 text-base md:text-2xl mb-6 md:mb-8 text-center">
             Business Model
           </h3>
-          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h2 className="text-3xl md:text-6xl font-bold text-white mb-4 md:mb-6">
             The <span className="text-[#F7AB0A]">$1 Billion</span> Opportunity
           </h2>
-          <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
             Strategic POS acquisition combined with AI-powered food intelligence creates the most valuable data platform in the $9.4T food industry
           </p>
           
           {/* Market Scope Clarification */}
-          <div className="mt-12 bg-gradient-to-r from-[#F7AB0A]/10 to-blue-500/10 rounded-xl p-6 border border-[#F7AB0A]/20">
+          <div className="mt-8 md:mt-12 bg-gradient-to-r from-[#F7AB0A]/10 to-blue-500/10 rounded-xl p-4 md:p-6 border border-[#F7AB0A]/20">
             <h4 className="text-2xl font-bold text-[#F7AB0A] mb-4 text-center">
               Beyond Restaurants: Complete Food Industry Domination
             </h4>
@@ -142,7 +142,7 @@ function Business({ businessModel }: Props) {
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Company Valuation Drivers</h3>
           <motion.div 
@@ -173,7 +173,7 @@ function Business({ businessModel }: Props) {
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Strategic Acquisition Timeline</h3>
           <div className="space-y-8">
@@ -221,7 +221,7 @@ function Business({ businessModel }: Props) {
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Competitive Advantages</h3>
           <motion.div 
@@ -252,7 +252,7 @@ function Business({ businessModel }: Props) {
           initial="initial"
           whileInView="animate"
           viewport={optimizedViewport}
-          className="mb-20"
+          className="mb-12 md:mb-20"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">Market Valuation Comparison</h3>
           <div className="bg-[#292929] rounded-xl p-8 border border-gray-700">
