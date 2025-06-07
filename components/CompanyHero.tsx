@@ -6,16 +6,16 @@ import Image from 'next/image'
 
 // Enhanced animation variants for consistent fluidity - Optimized for performance
 const smoothTransition = {
-  duration: 0.8,
-  ease: [0.25, 0.46, 0.45, 0.94] // Consistent smooth easing
+  duration: 0.5,
+  ease: [0.25, 0.46, 0.45, 0.94]
 }
 
 const staggerContainer = {
   initial: {},
   animate: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.05,
+      delayChildren: 0
     }
   }
 }
@@ -30,7 +30,10 @@ const fadeInUp = {
     opacity: 1, 
     y: 0,
     scale: 1,
-    transition: smoothTransition
+    transition: {
+      duration: 0.3, // Further reduced duration for faster animations
+      ease: [0.25, 0.46, 0.45, 0.94]
+    }
   }
 }
 
@@ -376,13 +379,18 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
             className='flex items-center justify-center gap-6 mb-6'
           >
             <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: "4rem" }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 1.2, delay: 1.3, ease: "easeOut" }}
-              className='h-px bg-gradient-to-r from-transparent to-[#F7AB0A]'
+              className='h-px w-16 bg-gradient-to-r from-transparent to-[#F7AB0A] origin-right'
             />
             
-            <div className='relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 p-2'>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.2, delay: 1.3, ease: "easeOut" }}
+              className='relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-r from-[#F7AB0A]/20 to-green-500/20 p-2'
+            >
               <Image 
                 className='object-contain'
                 src='/logos/icon.png'
@@ -390,13 +398,13 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
                 fill
                 priority
               />
-            </div>
+            </motion.div>
             
             <motion.div 
-              initial={{ width: 0 }}
-              animate={{ width: "4rem" }}
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
               transition={{ duration: 1.2, delay: 1.3, ease: "easeOut" }}
-              className='h-px bg-gradient-to-l from-transparent to-[#F7AB0A]'
+              className='h-px w-16 bg-gradient-to-l from-transparent to-[#F7AB0A] origin-left'
             />
           </motion.div>
           
@@ -509,7 +517,7 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
             y: animationPhase >= 2 ? 0 : 30, 
             opacity: animationPhase >= 2 ? 1 : 0 
           }}
-          transition={{ duration: 0.8, delay: 2.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           className='mb-10'
         >
           <motion.div 
@@ -565,7 +573,7 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
             y: animationPhase >= 2 ? 0 : 30, 
             opacity: animationPhase >= 2 ? 1 : 0 
           }}
-          transition={{ duration: 0.8, delay: 3.2, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           className='mb-10'
         >
           <motion.div 
@@ -616,7 +624,7 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
             opacity: animationPhase >= 2 ? 1 : 0,
             y: animationPhase >= 2 ? 0 : 20
           }}
-          transition={{ duration: 0.8, delay: 3.8, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
           className='mt-16 mb-8'
         >
           <Link href="#about">
