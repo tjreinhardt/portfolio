@@ -109,9 +109,9 @@ function AIServices({ aiServices }: Props) {
   ];
 
   return (
-    <div className="min-h-[80vh] md:min-h-screen relative bg-[rgb(36,36,36)] py-20 px-4">
+    <div className="min-h-0 relative bg-[rgb(36,36,36)] py-12 md:py-20 px-4">
       {/* Background Effects */}
-      <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
+      <div className='w-full absolute top-[10%] md:top-[20%] bg-[#F7AB0A]/5 left-0 h-[300px] md:h-[500px] skew-y-12' />
       
       <motion.div 
         variants={fadeIn}
@@ -121,8 +121,8 @@ function AIServices({ aiServices }: Props) {
         className="max-w-7xl mx-auto"
       >
         {/* Header */}
-        <div className="text-center mb-16">
-          <h3 className="uppercase tracking-[12px] md:tracking-[15px] lg:tracking-[20px] text-gray-500 text-lg md:text-xl lg:text-2xl mb-8 text-center">
+        <div className="text-center mb-12 md:mb-16">
+          <h3 className="uppercase tracking-[8px] md:tracking-[15px] lg:tracking-[20px] text-gray-500 text-base md:text-xl lg:text-2xl mb-6 md:mb-8 text-center">
             AI Services
           </h3>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-6">

@@ -106,18 +106,18 @@ function ContactMe({ }: Props) {
   ];
 
   return (
-    <div className='min-h-[80vh] md:min-h-screen relative flex flex-col text-left max-w-7xl mx-auto items-center py-20 px-6'>
+    <div className='min-h-0 relative flex flex-col text-left max-w-7xl mx-auto items-center py-12 md:py-20 px-6'>
       <motion.h3 
         initial={{ opacity: 0 }}
       viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'
+        className='absolute top-6 md:top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[10px] md:tracking-[20px] text-gray-500 text-base md:text-2xl text-center'
       >
         Get In Touch
       </motion.h3>
 
-      <div className='mt-20 z-20 w-full max-w-6xl'>
+      <div className='mt-16 md:mt-20 z-20 w-full max-w-6xl'>
         
         {/* Hero Section */}
         <motion.div

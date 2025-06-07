@@ -86,16 +86,16 @@ const CompanyAbout = memo(({ companyInfo }: Props) => {
       viewport={{ once: true }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1.5 }}
-      className='min-h-[80vh] md:min-h-screen relative bg-[rgb(36,36,36)] py-20'
+      className='min-h-0 relative bg-[rgb(36,36,36)] py-12 md:py-20'
     >
       {/* Background Effects */}
-      <div className='w-full absolute top-[20%] bg-[#F7AB0A]/5 left-0 h-[500px] skew-y-12' />
+      <div className='w-full absolute top-[10%] md:top-[20%] bg-[#F7AB0A]/5 left-0 h-[300px] md:h-[500px] skew-y-12' />
       
-      <h3 className='absolute top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[15px] md:tracking-[20px] text-gray-500 text-xl md:text-2xl text-center'>
+      <h3 className='absolute top-6 md:top-24 left-1/2 transform -translate-x-1/2 uppercase tracking-[10px] md:tracking-[20px] text-gray-500 text-base md:text-2xl text-center'>
         About
       </h3>
 
-      <div className='max-w-7xl mx-auto px-6 md:px-10 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-20'>
+      <div className='max-w-7xl mx-auto px-6 md:px-10 flex flex-col lg:flex-row items-center justify-center gap-12 md:gap-16 mt-16 md:mt-20'>
         
         {/* Logo Section - Enhanced */}
         <motion.div
