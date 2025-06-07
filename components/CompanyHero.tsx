@@ -92,17 +92,60 @@ const BENEFITS_DATA = [
 // Enhanced Typewriter with Dynamic Highlighting - Optimized with memoization
 const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
   const [shouldFadeColors, setShouldFadeColors] = useState(false)
+  const [shouldStayInvisible, setShouldStayInvisible] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [prevTextLength, setPrevTextLength] = useState(0)
+  const [maxTextLength, setMaxTextLength] = useState(0)
 
-  // Simple timer-based approach: fade colors after 3 seconds, regardless of typing state
+  // Enhanced deletion detection: track text length changes over time
   useEffect(() => {
-    // Reset fade state when text changes (new word starts)
-    setShouldFadeColors(false)
+    const currentLength = text.length
     
-    // Start color fade after 3 seconds of displaying the text
-    const timer = setTimeout(() => setShouldFadeColors(true), 3000)
+    // Track maximum text length reached (full text)
+    if (currentLength > maxTextLength) {
+      setMaxTextLength(currentLength)
+    }
     
-    return () => clearTimeout(timer)
-  }, [text])
+    // Detect deletion: current length is decreasing AND we've seen longer text before
+    const nowDeleting = currentLength < prevTextLength && maxTextLength > 20
+    
+    // Detect new word starting: very short text after having longer text
+    const newWordStarting = currentLength < 5 && maxTextLength > 20
+    
+    if (newWordStarting) {
+      // Reset for new word
+      setMaxTextLength(currentLength)
+      setIsDeleting(false)
+      setShouldFadeColors(false)
+      setShouldStayInvisible(false)
+    } else if (nowDeleting) {
+      // We're deleting - keep colors invisible
+      setIsDeleting(true)
+      setShouldStayInvisible(true)
+    } else if (!isDeleting && currentLength > 20) {
+      // Full text displayed and not deleting - start color sequence
+      if (!shouldFadeColors && !shouldStayInvisible) {
+        // Start color fade after 2.5 seconds of full display
+        const fadeTimer = setTimeout(() => {
+          setShouldFadeColors(true)
+        }, 2500)
+        
+        // Start invisible period after fade completes
+        const invisibleTimer = setTimeout(() => {
+          setShouldStayInvisible(true)
+        }, 3700) // 2500 + 1200
+        
+        // Store timers for cleanup
+        return () => {
+          clearTimeout(fadeTimer)
+          clearTimeout(invisibleTimer)
+        }
+      }
+    }
+    
+    // Update previous length for next comparison
+    setPrevTextLength(currentLength)
+  }, [text, prevTextLength, maxTextLength, isDeleting, shouldFadeColors, shouldStayInvisible])
   
   // Memoize the text processing to avoid recalculation on every render
   const renderHighlightedText = useCallback((inputText: string) => {
@@ -139,25 +182,40 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
       }
 
       const { color, glow, underline, scale } = part.highlight
+      const isOrangeColor = color === '#F7AB0A'
+      
+      // Determine final color based on states
+      let finalColor = '#ffffff' // Default white
+      
+      if (isDeleting) {
+        // During deletion, all colors stay invisible
+        finalColor = '#ffffff'
+      } else if (shouldStayInvisible) {
+        // During invisible period after fade, keep invisible
+        finalColor = '#ffffff'
+      } else if (shouldFadeColors) {
+        // During fade period, transition to white
+        finalColor = '#ffffff'
+      } else {
+        // Colors are active - show target color
+        finalColor = color
+      }
       
       return (
         <motion.span
           key={index}
           initial={{ 
-            opacity: 0,
-            scale: 1
+            scale: 1,
+            color: '#ffffff' // Start with white color
           }}
           animate={{ 
-            opacity: 1,
             scale: scale ? [1, 1.03, 1] : 1, // Subtle smooth scale like "Serving AI"
-            color: shouldFadeColors ? '#ffffff' : color // Fade to white when ready to delete
+            color: finalColor
           }}
           transition={{ 
-            duration: 0.6,
             ease: "easeOut",
-            delay: 0.1,
             scale: { duration: 0.4, ease: "easeOut" },
-            color: { duration: 1.2, ease: "easeOut" } // Faster 1.2s color transition
+            color: { duration: 1.2, ease: "easeOut" } // Consistent 1.2s for both fade in and fade out
           }}
           className="relative font-bold"
         >
@@ -169,8 +227,8 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ 
                   scaleX: 1, 
-                  opacity: shouldFadeColors ? 0 : 1,
-                  backgroundColor: shouldFadeColors ? '#ffffff' : color
+                  opacity: (shouldFadeColors || shouldStayInvisible || isDeleting) ? 0 : 1,
+                  backgroundColor: (shouldFadeColors || shouldStayInvisible || isDeleting) ? '#ffffff' : color
                 }}
                 transition={{ 
                   duration: 0.8, 
@@ -186,8 +244,8 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ 
                   scaleX: 1, 
-                  opacity: shouldFadeColors ? 0 : 0.3,
-                  backgroundColor: shouldFadeColors ? '#ffffff' : color
+                  opacity: (shouldFadeColors || shouldStayInvisible || isDeleting) ? 0 : 0.3,
+                  backgroundColor: (shouldFadeColors || shouldStayInvisible || isDeleting) ? '#ffffff' : color
                 }}
                 transition={{ 
                   duration: 1.0, 
@@ -215,7 +273,7 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
         </motion.span>
       )
     })
-  }, [shouldFadeColors]) // Add dependencies array for useCallback
+  }, [shouldFadeColors, shouldStayInvisible, isDeleting]) // Add dependencies array for useCallback
 
   return (
     <div className="relative">
@@ -251,7 +309,7 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
   const [text, count] = useTypewriter({
     words: TYPEWRITER_WORDS,
     loop: true,
-    delaySpeed: 6000, // 3s color display + 2s fade + 1s buffer = 6s total
+    delaySpeed: 5000, // 3s color display + 1.2s fade + 1.3s buffer = 5.5s total
     deleteSpeed: 25,
     typeSpeed: 80,
   })
