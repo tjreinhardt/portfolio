@@ -54,14 +54,14 @@ const HIGHLIGHT_PATTERNS = [
   // Left sections: Yellow/Gold with glow + scale (no underline)
   { pattern: /Hungry\s+for\s+\$9\.4T/gi, color: '#F7AB0A', glow: true, scale: true },
   { pattern: /Serving\s+AI/gi, color: '#F7AB0A', glow: true, scale: true },
-  { pattern: /2000\+\s+Restaurants/gi, color: '#F7AB0A', glow: true, scale: true },
+  { pattern: /In\s+the\s+end/gi, color: '#F7AB0A', glow: true, scale: true },
   { pattern: /Building\s+Tomorrow's/gi, color: '#F7AB0A', glow: true, scale: true },
   { pattern: /Secret\s+Sauce/gi, color: '#F7AB0A', glow: true, scale: true },
   
   // Right sections: Green with glow + underline (always underlined)
   { pattern: /Side\s+of\s+Insights/gi, color: '#10B981', glow: true, underline: true },
   { pattern: /Data/gi, color: '#10B981', glow: true, underline: true },
-  { pattern: /Infinite\s+Intelligence/gi, color: '#10B981', glow: true, underline: true },
+  { pattern: /everybody\s+eats/gi, color: '#10B981', glow: true, underline: true },
   { pattern: /Food\s+Empire/gi, color: '#10B981', glow: true, underline: true }
 ]
 
@@ -69,7 +69,7 @@ const HIGHLIGHT_PATTERNS = [
 const TYPEWRITER_WORDS = [
   "Hungry for $9.4T in Data",
   "Serving AI with a Side of Insights", 
-  "2000+ Restaurants, Infinite Intelligence",
+  "In the end everybody eats",
   "Building Tomorrow's Food Empire",
   "The Secret Sauce is Data"
 ]
