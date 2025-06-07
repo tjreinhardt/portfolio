@@ -53,7 +53,7 @@ function Business({ businessModel }: Props) {
     {
       title: "Data-for-Discount Innovation",
       description: "Revolutionary pricing model: food establishments save 25-50% for data sharing",
-      impact: "Reduces business failure rates across the food industry (17% fail year 1, 49% within 5 years)"
+      impact: "Reduces business failure rates across the food industry (60% fail year 1, 80% within 5 years)"
     },
     {
       title: "Network Effects Platform",
