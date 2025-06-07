@@ -91,6 +91,18 @@ const BENEFITS_DATA = [
 
 // Enhanced Typewriter with Dynamic Highlighting - Optimized with memoization
 const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
+  const [shouldFadeColors, setShouldFadeColors] = useState(false)
+
+  // Simple timer-based approach: fade colors after 3 seconds, regardless of typing state
+  useEffect(() => {
+    // Reset fade state when text changes (new word starts)
+    setShouldFadeColors(false)
+    
+    // Start color fade after 3 seconds of displaying the text
+    const timer = setTimeout(() => setShouldFadeColors(true), 3000)
+    
+    return () => clearTimeout(timer)
+  }, [text])
   
   // Memoize the text processing to avoid recalculation on every render
   const renderHighlightedText = useCallback((inputText: string) => {
@@ -137,19 +149,17 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
           }}
           animate={{ 
             opacity: 1,
-            scale: scale ? [1, 1.03, 1] : 1 // Subtle smooth scale like "Serving AI"
+            scale: scale ? [1, 1.03, 1] : 1, // Subtle smooth scale like "Serving AI"
+            color: shouldFadeColors ? '#ffffff' : color // Fade to white when ready to delete
           }}
           transition={{ 
             duration: 0.6,
             ease: "easeOut",
             delay: 0.1,
-            scale: { duration: 0.4, ease: "easeOut" }
+            scale: { duration: 0.4, ease: "easeOut" },
+            color: { duration: 1.2, ease: "easeOut" } // Faster 1.2s color transition
           }}
           className="relative font-bold"
-          style={{ 
-            color: color, // Keep color permanently applied via style
-            borderBottom: underline ? `2px solid ${color}` : 'none'
-          }}
         >
           {part.text}
           {underline && (
@@ -157,32 +167,36 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
               {/* Main underline */}
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}
-                animate={{ scaleX: 1, opacity: 1 }}
+                animate={{ 
+                  scaleX: 1, 
+                  opacity: shouldFadeColors ? 0 : 1,
+                  backgroundColor: shouldFadeColors ? '#ffffff' : color
+                }}
                 transition={{ 
                   duration: 0.8, 
                   delay: 0.2,
-                  ease: "easeOut"
+                  ease: "easeOut",
+                  opacity: { duration: 1.2, ease: "easeOut" },
+                  backgroundColor: { duration: 1.2, ease: "easeOut" }
                 }}
                 className="absolute bottom-0 left-0 right-0 h-0.5 origin-left"
-                style={{ backgroundColor: color }}
               />
               {/* Secondary subtle underline */}
               <motion.div
                 initial={{ scaleX: 0, opacity: 0 }}
                 animate={{ 
                   scaleX: 1, 
-                  opacity: 0.3
+                  opacity: shouldFadeColors ? 0 : 0.3,
+                  backgroundColor: shouldFadeColors ? '#ffffff' : color
                 }}
                 transition={{ 
                   duration: 1.0, 
                   delay: 0.4,
-                  ease: "easeOut"
+                  ease: "easeOut",
+                  opacity: { duration: 1.2, ease: "easeOut" },
+                  backgroundColor: { duration: 1.2, ease: "easeOut" }
                 }}
                 className="absolute bottom-0 left-0 right-0 origin-left rounded-sm h-0.5"
-                style={{ 
-                  backgroundColor: color,
-                  opacity: 0.3
-                }}
               />
             </>
           )}
@@ -201,7 +215,7 @@ const TypewriterWithHighlights = memo(({ text }: { text: string }) => {
         </motion.span>
       )
     })
-  }, []) // Add dependencies array for useCallback
+  }, [shouldFadeColors]) // Add dependencies array for useCallback
 
   return (
     <div className="relative">
@@ -237,7 +251,7 @@ const CompanyHero = memo(({ companyInfo }: Props) => {
   const [text, count] = useTypewriter({
     words: TYPEWRITER_WORDS,
     loop: true,
-    delaySpeed: 2000,
+    delaySpeed: 6000, // 3s color display + 2s fade + 1s buffer = 6s total
     deleteSpeed: 25,
     typeSpeed: 80,
   })
