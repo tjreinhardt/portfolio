@@ -350,7 +350,7 @@ function DataApplications() {
                   
                   <div className='text-center'>
                     <div className='text-2xl md:text-3xl font-bold text-green-400 mb-2'>
-                      $50M-100M
+                      $20M-50M
                     </div>
                     <div className='text-sm font-semibold text-green-300 mb-3 uppercase tracking-wide'>
                       Year 1-2: Foundation
@@ -382,7 +382,7 @@ function DataApplications() {
                   
                   <div className='text-center'>
                     <div className='text-2xl md:text-3xl font-bold text-blue-400 mb-2'>
-                      $500M-1B
+                      $200M-500M
                     </div>
                     <div className='text-sm font-semibold text-blue-300 mb-3 uppercase tracking-wide'>
                       Year 3-5: Scale
@@ -414,7 +414,7 @@ function DataApplications() {
                   
                   <div className='text-center'>
                     <div className='text-2xl md:text-3xl font-bold text-purple-400 mb-2'>
-                      $2B+
+                      $1B+
                     </div>
                     <div className='text-sm font-semibold text-purple-300 mb-3 uppercase tracking-wide'>
                       Year 5+: Dominance

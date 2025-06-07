@@ -33,7 +33,7 @@ function Business({ businessModel }: Props) {
     {
       phase: "Phase 3: Market Expansion",
       timeline: "18-42 months", 
-      funding: "$1B+ Series B",
+      funding: "TBD Series B",
       milestones: ["Multi-state presence", "10K+ food establishments", "Partnership ecosystem", "Venture Pods"],
       icon: "📈"
     }
@@ -63,9 +63,9 @@ function Business({ businessModel }: Props) {
   ];
 
   const marketComparisons = [
-    { company: "Toast (POS only)", valuation: "$24.8B", revenue: "$5.2B", note: "Limited to POS services" },
-    { company: "Snowflake (Data)", valuation: "$45B+", revenue: "$2.7B", note: "Generic data platform" },
-    { company: "Palantir (Analytics)", valuation: "$20B+", revenue: "$2.2B", note: "Government/enterprise focus" },
+    { company: "Toast (POS only)", valuation: "$17.7B", revenue: "$5.2B", note: "Limited to POS services" },
+    { company: "Snowflake (Data)", valuation: "$69.6B", revenue: "$3.84B", note: "Generic data platform" },
+    { company: "Palantir (Analytics)", valuation: "$314B", revenue: "$3.9B", note: "Government/enterprise focus" },
     { company: "Breme AI (Vision)", valuation: "TBD", revenue: "Pre-revenue", note: "Food industry data monopoly" }
   ];
 
